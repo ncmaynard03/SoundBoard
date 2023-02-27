@@ -1,0 +1,100 @@
+﻿SoundBoard Requirements
+Team Members 
+Nathaniel Maynard
+Gabriel Lundgren
+Purpose 
+This soundboard will be used to import mp3 sound files and bind them to buttons or shortcut keys so they can be played on demand. These file clips can also be assigned tags and labels so that they can be easily sorted and organized into different tabs.
+Requirements
+
+
+1. Name: platform_os
+Type[a][b]: constraint
+Summary: This software will be designed to run on windows 10
+
+
+2. Name: sound_quality
+Type: constraint
+Summary: application’s sound quality will be limited by the user’s equipment (i.e. speakers or microphone) quality, depending on how they want to transmit the audio file.
+
+
+3. Name: vb_audio
+Type: risk
+Summary: rely on external application to be a medium for the application
+
+
+4. Name: import_sound
+Type: functional
+Summary: A file dialog should be opened so the user can pick a sound file, which will then be stored in the software’s local files. 
+
+
+5. Name: label_sound
+Type: functional
+Summary: The software will show a prompt allowing the user to change the file name and also add/remove tags from the file
+
+
+________________
+
+
+6. Name: search_file
+Type: functional
+Summary: There will be a search bar that will display the files that have the search term(s) in the file name or in the tags 
+
+
+7. Name: delete_sound
+Type: functional
+Summary: Each sound will have a delete button that will show a “Are you sure?” prompt, which will delete the file if yes is pressed 
+
+
+8. Name: delete_all
+Type: functional
+Summary: Delete all files in a profile
+
+
+9. Name: file_tabs
+Type: functional
+Summary: The software will have a set of tabs that will show all files that share the same tag, also tabs that can be custom made by the user 
+
+
+10. Name: edit_keybinds
+Type: functional
+Summary: A settings menu will pop up that allows the user to change default keybinds for stop skip, play, etc.
+
+
+11. Name: change_scheme
+Type: functional
+Summary: the user can change the color scheme of the application in the settings by selecting the circle with the 2 colors they want 
+
+
+12. Name: toggle_visibility
+Type: functional
+Summary: The user can show or hide the GUI by using the assigned shortcut 
+
+
+13. Name: loop_mode
+Type: functional
+Summary: 
+1. Off (default): current sound will only play once 
+2. Number: current sound will repeat number of times entered by user 
+3. On: current sound will repeat until skipped, paused or another sound is played
+
+
+14. Name: toggle_tags
+Type: functional
+Summary: sounds with certain tags can be hidden/shown by a filter or button
+
+
+15. Name: volume_control
+Type: functional
+Summary: the user can adjust the playback volume regardless of if a sound is currently playing 
+
+
+16. Name: reorder_list
+Type: functional
+Summary: the user can order the list of sounds by alphabetical and playback time in normal or reverse order
+
+
+17. Name: docking_screen
+Type: functional
+Summary: the user can choose which side of their screen to dock the gui to as well its size
+[a]I think we should list risks and constraints at the top since most of our requirements will be functionality
+[b]true
