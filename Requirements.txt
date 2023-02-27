@@ -32,9 +32,6 @@ Type: functional
 Summary: The software will show a prompt allowing the user to change the file name and also add/remove tags from the file
 
 
-________________
-
-
 6. Name: search_file
 Type: functional
 Summary: There will be a search bar that will display the files that have the search term(s) in the file name or in the tags 
@@ -96,5 +93,3 @@ Summary: the user can order the list of sounds by alphabetical and playback time
 17. Name: docking_screen
 Type: functional
 Summary: the user can choose which side of their screen to dock the gui to as well its size
-[a]I think we should list risks and constraints at the top since most of our requirements will be functionality
-[b]true
