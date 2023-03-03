@@ -1,0 +1,60 @@
+Gabriel Lundgren
+Nathan Maynard
+
+1.		Bobby recorded an audio clip of his friend, Jesus. He wants to add the clip to the soundboard application so sometime
+later he can play it back to his friend. Bobby launches the application and imports the sound by clicking "import sound". 
+A window opens and asks for the sounds name in the application. The menu also gives the option to add tags to the
+sound file. Bobby wants to categorize future sounds of his friend Jesus, so he clicks the "Create New Tag" button and writes
+'#Jesus' as the tag name and then clicks the 'Create' button. Now Bobby clicks "Add Tag" and selects '#Jesus'. Then Bobby
+clicks the 'Finish' button to finish importing the sound.
+
+
+2.		User doesn't like the position of the soundboard over their fullscreen game of Apex Legends. It would be blocking the
+map when playing a match. User minimizes the game and switches over to the Soundboard Application. User then clicks the "File" tab in the top left 
+of the application. Then, they select the "Customize" submenu item and then choose from a list of customization options
+available to them. They want to move the drawn-over Soundboard window slightly to the right of the map, so the user
+needs to select "Location" then "Advanced", which opens two text boxes labeled "x:" and "y:" with values 20, 20 (20 
+pixels from left, 20 pixels from top). To move the drawn-over window, the user changes the x value from 20 to 150.
+Now the in-game window should have shifted to the right by 130 pixels.
+
+
+3.		User doesn't like the drawn-over window being transparent. User opens "File" tab then selects the submenu
+item "Customize". From there, they select the option "Opacity". Upon clicking, a popup slider with the current value on
+the right appears. They adjust the value to be 100 and close the popup.  
+
+
+4.		Tabetha wants to delete one of her sounds from the application. She types the name of the sound into the search
+bar to locate it. She clicks the sounds "Edit" button. A small menu showing the options "Change name", "Add tag",
+and "Remove" appear. She selects "Remove" and then the sound disappears from her application.
+
+
+5.		Will wants to blast a loud sound through his speakers. Will types the tag '#horn' and finds one his favorite sounds:
+"Sumburgh Foghorn". Before pressing play, he adjusts the volume to be at the maximum volume using the volume slider.
+Then Will presses play at which the person right next to Will's subwoofer nearly falls out of the chair. As the audio clip
+progressed, the slider bar, representing the length of the clip in seconds and minutes, moved from right to left.
+
+
+6.		User doesn't like the default keybinds setup by the developers of the application. They prefer to use their number
+pad for media controls. User navigates to the "Customize" menu item and selects "Keybinding", which opens a menu
+showing all current keybinds for the application. Each keybind value is on a button, so when the user clicks on the button
+for pausing the clip, a popup window opens asking the user to press whatever button they want on their keyboard to
+assign the new key to the pause button. After changing several other key bindings, they click "Ok" to close the "Keybinding"
+window.
+
+
+7.		User has a child in the room with them and they want to get a laugh out of the kid, but they don't want to play any
+explicit sounds. They navigate to the ListBox containing "Filter" by default. They select "Filter Out" then type "#explicit"
+into the TextBox next to the ListBox. Only sounds without the tag #explicit are now shown.
+
+
+8.		User wants to stop the Soundboard application from drawing over their other windows. Luckily there is a keybind
+for that, so all they need to do is hit the keybind which works like a toggle.
+
+
+9.		Brian doesn't really take interest in the default color scheme of the application. He decides to change it, so he
+navigates to the "Schemes" menu item by clicking "File", then "Customization". After looking through many schemes
+provided by the developers, Brian selects "Retro" to give the application an older look. Now Brian is enjoying his 
+soundboard in style.
+
+
+10.
