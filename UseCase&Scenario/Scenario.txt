@@ -57,4 +57,6 @@ provided by the developers, Brian selects "Retro" to give the application an old
 soundboard in style.
 
 
-10.
+10. user realized they forgot to rename a sound file when they imported it so they do not know what the sound is. they 
+can play the sound to determine what it is, right click and press "rename" to give jt a new name. then the user can right
+click and press "add tags" to organize the file better. 
