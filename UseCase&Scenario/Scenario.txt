@@ -1,11 +1,11 @@
 Gabriel Lundgren
 Nathan Maynard
 
-1.		Bobby recorded an audio clip of his friend, Jesus. He wants to add the clip to the soundboard application so sometime
+1.		Bobby recorded an audio clip of his friend, Jess. He wants to add the clip to the soundboard application so sometime
 later he can play it back to his friend. Bobby launches the application and imports the sound by clicking "import sound". 
 A window opens and asks for the sounds name in the application. The menu also gives the option to add tags to the
-sound file. Bobby wants to categorize future sounds of his friend Jesus, so he clicks the "Create New Tag" button and writes
-'#Jesus' as the tag name and then clicks the 'Create' button. Now Bobby clicks "Add Tag" and selects '#Jesus'. Then Bobby
+sound file. Bobby wants to categorize future sounds of his friend Jess, so he clicks the "Create New Tag" button and writes
+'#Jess' as the tag name and then clicks the 'Create' button. Now Bobby clicks "Add Tag" and selects '#Jess'. Then Bobby
 clicks the 'Finish' button to finish importing the sound.
 
 
