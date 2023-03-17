@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\SoundBoardWindow"
   ],
-  "SelectedNode": "\\C:\\Users\\Gabe\\Source\\Repos\\SoundBoard",
+  "SelectedNode": "\\SoundBoardWindow\\MainWindow.xaml",
   "PreviewInSolutionExplorer": false
 }
