@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+using Microsoft.Win32;
 
 namespace SoundBoardWindow
 {
@@ -24,5 +26,23 @@ namespace SoundBoardWindow
         {
             InitializeComponent();
         }
+
+        public void AddSound(object sender, RoutedEventArgs e)
+        {
+            var ofd = new OpenFileDialog();
+            ofd.Filter = "Sound file | *.mp3";
+
+            if (ofd.ShowDialog() == false)
+                return;
+
+            var path = ofd.FileName;
+            Console.WriteLine(path);
+            var spa = new MediaPlayer();
+            spa.Open(new Uri(path));
+            spa.Play();
+            
+
+        }
     }
+
 }
