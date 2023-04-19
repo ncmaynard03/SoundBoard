@@ -98,10 +98,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icons\Add.png" />
-    <Resource Include="Icons\Book.png" />
-    <Resource Include="Icons\Folder.png" />
-    <Resource Include="Icons\Search.png" />
+    <Resource Include="Icons\plus.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\folder.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\book.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

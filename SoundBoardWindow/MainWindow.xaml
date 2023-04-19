@@ -8,21 +8,21 @@
         Title="SoundBoard" Height="500" Width="300" MaxHeight="500" MaxWidth="300" MinHeight="250" MinWidth="150">
     <Grid>
 	    
-		<Menu>
-            <MenuItem Name="File">
+		<Menu Padding="5" HorizontalAlignment="Center" VerticalAlignment="Top" >
+            <MenuItem Name="File" >
                 <MenuItem.Header>
-                    <Image Source="/Icons/Folder.png" Width="32"></Image>
+                    <Image Source="/Icons/Folder.ico" Stretch="UniformToFill" Height="35"></Image>
                 </MenuItem.Header>
             </MenuItem>
-            <MenuItem Name="Library">
+            <MenuItem Name="Library" >
                 <MenuItem.Header>
-                    <Image Source="/Icons/Book.png" Width="32"></Image>
-                </MenuItem.Header>
+                    <Image Source="/Icons/Book.ico" Stretch="UniformToFill" Height="35"></Image>
+                </MenuItem.Header >
             </MenuItem>
 
-            <MenuItem Name="Add" Click="AddSound">
+            <MenuItem Name="Add" Click="AddSound" >
                 <MenuItem.Header>
-                    <Image Source="/Icons/Add.png" Width="32"></Image>
+                    <Image Source="/Icons/plus.ico" Height="35"></Image>
                 </MenuItem.Header>
             </MenuItem>
 
