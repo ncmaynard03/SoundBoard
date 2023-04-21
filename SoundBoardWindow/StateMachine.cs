@@ -30,6 +30,10 @@ public class StateMachine
 	private List<SoundFile> _soundFiles;
 	private UInt16 Opacity { get; set; }
 	bool DrawOverApps { get; set; }
+
+	DockPositions _currDockPos;
+	DockPositions CurrDockPos { get; set; }
+
 	bool PlayingSound { get; set; }
 
 	public StateMachine()
