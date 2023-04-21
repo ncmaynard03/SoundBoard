@@ -27,9 +27,16 @@ public enum colorSchemes
 public class StateMachine
 {
 
-	private List<String> _soundFiles;
+	private List<SoundFile> _soundFiles;
+	private UInt16 Opacity { get; set; }
+	bool DrawOverApps { get; set; }
+	bool PlayingSound { get; set; }
 
 	public StateMachine()
 	{
+		_soundFiles = new List<SoundFile>();
+		Opacity = 100;
+		DrawOverApps = false;
+		PlayingSound = false;
 	}
 }
