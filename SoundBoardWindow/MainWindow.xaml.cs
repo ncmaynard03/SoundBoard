@@ -22,27 +22,26 @@ namespace SoundBoardWindow
     /// </summary>
     public partial class MainWindow : Window
     {
+        AddSoundWindow asd;
+        MediaPlayer mp;
+
         public MainWindow()
         {
             InitializeComponent();
+            mp = new MediaPlayer();
+
         }
 
         public void AddSound(object sender, RoutedEventArgs e)
         {
-            var ofd = new OpenFileDialog();
-            ofd.Filter = "Sound file | *.mp3";
-
-            if (ofd.ShowDialog() == false)
-                return;
-
-            var path = ofd.FileName;
-            Console.WriteLine(path);
-            var spa = new MediaPlayer();
-            spa.Open(new Uri(path));
-            spa.Play();
-            
-
+            asd = new AddSoundWindow();
+            asd.Show();
+            asd.SelectFile();
         }
+
+
     }
+
+
 
 }
