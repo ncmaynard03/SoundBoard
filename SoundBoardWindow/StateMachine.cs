@@ -23,27 +23,24 @@ public enum colorSchemes
 	Green
 }
 
-public class StateMachine
+/// <summary>
+/// Holds all the global variables for the rest of the program to use.
+/// </summary>
+public static class StateMachine
 {
-    List<SoundFile> _soundFiles;
-    public List<SoundFile> SoundFiles { get; set; }
+    private static List<SoundFile> _soundFiles;
+    public static List<SoundFile> SoundFiles { get; set; }
 
-    UInt16 _opacity;
-    public UInt16 Opacity { get; set; }
+    private static UInt16 _opacity;
+    public static UInt16 Opacity { get; set; }
 
-    bool _drawOverApps;
-    public bool DrawOverApps { get; set; }
+    private static bool _drawOverApps;
+    public static bool DrawOverApps { get; set; }
 
-    DockPositions _currDockPos;
-    public DockPositions CurrDockPos { get; set; }
+    private static DockPositions _currDockPos;
+    public static DockPositions CurrDockPos { get; set; }
 
-    public bool PlayingSound { get; set; }
+    private static bool _playingSound;
+    public static bool PlayingSound { get; set; }
 
-    public StateMachine()
-    {
-        SoundFiles = new List<SoundFile>();
-        Opacity = 100;
-        DrawOverApps = false;
-        PlayingSound = false;
-    }
 }
