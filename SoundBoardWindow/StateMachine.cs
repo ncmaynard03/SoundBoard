@@ -28,8 +28,13 @@ public enum colorSchemes
 /// </summary>
 public static class StateMachine
 {
+    //Have Library.cs talk to this list of SoundFiles
     private static List<SoundFile> _soundFiles;
     public static List<SoundFile> SoundFiles { get; set; }
+
+    //Have Library.cs talk to this list of tags
+    private static List<string> _tags;
+    public static List<string> Tags { get; set; }
 
     private static UInt16 _opacity;
     public static UInt16 Opacity { get; set; }
