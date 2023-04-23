@@ -24,8 +24,8 @@ namespace SoundBoardWindow
     /// </summary>
     public partial class AddSoundWindow : Window, INotifyPropertyChanged
     {
-        private string filePath;
-        private string fileName;
+        private string _filePath;
+        private string _fileName;
         private OpenFileDialog ofd;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -33,7 +33,7 @@ namespace SoundBoardWindow
         public AddSoundWindow()
         {
             InitializeComponent();
-            filePath = fileName = "";
+            _filePath = _fileName = "";
             this.DataContext = this;
             ofd = new OpenFileDialog();
             Console.WriteLine("\n\nNew Dialogue\n\n");
@@ -60,24 +60,24 @@ namespace SoundBoardWindow
 
         }
 
-        public string FileName { get { return fileName; } set
+        public string FileName { get { return _fileName; } set
             {
                
-                if(fileName != value)
+                if(_fileName != value)
                 {
-                    fileName = value;
+                    _fileName = value;
                     OnPropertyChanged("FileName");
                 }
             }
         }
 
-        public string FilePath { get { return filePath; }
+        public string FilePath { get { return _filePath; }
             set
             {
 
-                if (filePath != value)
+                if (_filePath != value)
                 {
-                    filePath = value;
+                    _filePath = value;
                     OnPropertyChanged("FilePath");
                 }
             }

@@ -23,7 +23,7 @@ namespace SoundBoardWindow
         // Specify the keys and mouse actions that invoke the command. 
         public Key GestureKey { get; set; }
         public ModifierKeys GestureModifier { get; set; }
-        public MouseAction MouseGesture { get; set; }
+        //public MouseAction MouseGesture { get; set; } //wont be using this
 
         Action<object> _executeDelegate;
 
@@ -42,6 +42,8 @@ namespace SoundBoardWindow
     }
 
 
+
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -55,6 +57,13 @@ namespace SoundBoardWindow
             InitializeComponent();
             mp = new MediaPlayer();
 
+            //StateMachine initialization
+            StateMachine.SoundFiles = new List<SoundFile>();
+            StateMachine.Tags = new List<string>();
+            StateMachine.Opacity = 100;
+            StateMachine.DrawOverApps = false;
+            StateMachine.CurrDockPos = DockPositions.Left;
+            StateMachine.PlayingSound = false;
         }
 
         public void AddSound(object sender, RoutedEventArgs e)
@@ -62,6 +71,13 @@ namespace SoundBoardWindow
             asd = new AddSoundWindow();
             asd.Show();
             asd.SelectFile();
+        }
+
+        public SimpleDelegateCommand playSoundCommand, pauseSoundCommand, skipSoundCommand, rotateGUIPosClockwiseCommand, toggleDrawOverAppsCommand;
+
+        private void InitializeCommand()
+        {
+            
         }
 
 

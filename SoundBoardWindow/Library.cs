@@ -16,6 +16,7 @@ namespace SoundBoardWindow
 
         public string Name { get; set; }
     }
+
     public class Library
     {
         private List<SoundFile> _soundFiles;
