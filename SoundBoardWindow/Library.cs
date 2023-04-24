@@ -25,6 +25,7 @@ namespace SoundBoardWindow
         }
     }
 
+<<<<<<< HEAD
     public class TagList
     {
         private List<Tag> _usedTags;
@@ -148,6 +149,8 @@ namespace SoundBoardWindow
         }
     }
 
+=======
+>>>>>>> 37f0a9d47b54d971f07b7550b3db4c030f16ec94
     public class Library
     {
         private List<SoundFile> _soundFiles;
