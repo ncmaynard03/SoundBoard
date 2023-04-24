@@ -28,24 +28,24 @@ namespace SoundBoardWindow {
     /// </summary>
     public static class StateMachine
     {
-        //Have Library.cs talk to this list of SoundFiles
+        //Have Library.cs talk to this list of ListOfSoundFiles
+        private static List<SoundFile> listOfSoundFiles;
         public static List<SoundFile> ListOfSoundFiles { get; set; }
-        public static List<SoundFile> SoundFiles { get; set; }
 
         //Have Library.cs talk to this list of tags
-        private static List<string> _tags;
+        private static List<string> tags;
         public static List<string> Tags { get; set; }
 
-        private static UInt16 _opacity;
+        private static UInt16 opacity;
         public static UInt16 Opacity { get; set; }
 
-        private static bool _drawOverApps;
+        private static bool drawOverApps;
         public static bool DrawOverApps { get; set; }
 
-        private static DockPositions _currDockPos;
+        private static DockPositions currDockPos;
         public static DockPositions CurrDockPos { get; set; }
 
-        private static bool _playingSound;
+        private static bool playingSound;
         public static bool PlayingSound { get; set; }
 
     }

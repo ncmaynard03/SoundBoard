@@ -66,7 +66,7 @@ namespace SoundBoardWindow
             Lib.TagsList.Add(new Tag("Tag3"));
             Lib.TagsList.Add(new Tag("Tag4", true));
             //StateMachine initialization
-            StateMachine.SoundFiles = new List<SoundFile>();
+            StateMachine.ListOfSoundFiles = new List<SoundFile>();
             StateMachine.Tags = new List<string>();
             StateMachine.Opacity = 100;
             StateMachine.DrawOverApps = false;
