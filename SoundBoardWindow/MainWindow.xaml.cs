@@ -26,9 +26,10 @@ namespace SoundBoardWindow
         private AddSoundWindow _asd;
         private MediaPlayer _player;
         public static MainWindow CurrentInstance { get; private set; }
-
+        public StateMachine MasterStateMachine { get; set; }
         public MainWindow()
         {
+            MasterStateMachine = new StateMachine();
             InitializeComponent();
             //StateMachine initialization
             
