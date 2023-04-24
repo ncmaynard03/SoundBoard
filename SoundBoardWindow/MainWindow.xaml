@@ -6,9 +6,12 @@
         xmlns:local="clr-namespace:SoundBoardWindow"
         mc:Ignorable="d"
         Title="SoundBoard" Height="500" Width="300" MaxHeight="500" MaxWidth="300" MinHeight="250" MinWidth="150">
+    <!--#region Commands-->
 	<Window.CommandBindings>
 		<CommandBinding Command="Play" CanExecute="CommandBindingPlay_CanExecute" Executed="CommandBindingPlay_Executed" />
-	</Window.CommandBindings>
+        <CommandBinding Command="Stop" CanExecute="CommandBindingStop_CanExecute" Executed="CommandBindingStop_Executed"/>
+    </Window.CommandBindings>
+    <!--#endregion-->
     <TabControl VerticalAlignment="Top">
         <TabItem Name="Play" >
             <TabItem.Header>
@@ -18,6 +21,7 @@
             <Grid>
                 <Grid.InputBindings>
                     <KeyBinding Key="Space" Modifiers="Ctrl" Command="Play"/>
+                    <KeyBinding Key="O" Modifiers="Ctrl" Command="Stop"/>
                 </Grid.InputBindings>
             
                 <Grid.RowDefinitions>
@@ -38,13 +42,15 @@
                             MediaOpened="Element_MediaOpened" MediaEnded="Element_MediaEnded"/>
                        
                         <!-- Play button. -->
-						<Button Command="">
+						<Button Command="Play">
                         <Image Name="PlayBtn" Source="/Icons/Play.ico"  MouseDown="TogglePaused" Margin="5" Width="16"  Height="16" />
 						</Button>
 
 
                         <!-- Stop button. -->
-                        <Image Source="/Icons/Stop.ico" MouseDown="OnMouseDownStopMedia" Margin="5" Width="16"  Height="16"/>
+                        <Button>
+                            <Image Source="/Icons/Stop.ico" MouseDown="OnMouseDownStopMedia" Margin="5" Width="16"  Height="16"/>
+                        </Button>
                     </StackPanel>
 
                     <!--Sliders -->
@@ -58,7 +64,7 @@
 
                         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                             <Slider Name="timelineSlider" Margin="5" ValueChanged="SeekToMediaPosition" Width="140"/>
-                            <!-- Volume slider. This slider allows you to change the speed of the media playback. -->
+                            <!-- Speed slider. This slider allows you to change the speed of the media playback. -->
                             <TextBlock Foreground="Black" Margin="5"  VerticalAlignment="Center">Speed</TextBlock>
                         </StackPanel>
 
