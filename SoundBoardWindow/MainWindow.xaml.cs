@@ -58,26 +58,6 @@ namespace SoundBoardWindow
             
         }
 
-        public void TogglePaused(Object Sender, MouseButtonEventArgs args)
-        {
-            MasterStateMachine.PlayingSound = !MasterStateMachine.PlayingSound;
-        }
-
-        void OnMouseDownPlayMedia(object sender, MouseButtonEventArgs args)
-        {
-            mediaUI.Play();
-            InitializePropertyValues();
-        }
-
-        void OnMouseDownPauseMedia(object sender, MouseButtonEventArgs args)
-        {
-            mediaUI.Pause();
-        }
-
-        void OnMouseDownStopMedia(object sender, MouseButtonEventArgs args)
-        {
-            mediaUI.Stop();
-        }
 
         private void ChangeMediaVolume(object sender, RoutedPropertyChangedEventArgs<double> args)
         {
@@ -116,7 +96,7 @@ namespace SoundBoardWindow
 
         public Library Lib { get; }
         
-        //---------------------------------------
+        //---------------------------------------MEDIA CONTROLS
         private void CommandBindingPlay_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {e.CanExecute = true;}
 
@@ -138,6 +118,26 @@ namespace SoundBoardWindow
                 mediaUI.Stop();
                 MasterStateMachine.PlayingSound = false;
             }
+        }
+
+        private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
+
+        private void CommandBindingAddSound_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+
+        }
+
+        private void CommandBindingAddSound_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            
         }
         //---------------------------------------
     }

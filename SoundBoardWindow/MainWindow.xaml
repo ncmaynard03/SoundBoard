@@ -10,19 +10,23 @@
 	<Window.CommandBindings>
 		<CommandBinding Command="Play" CanExecute="CommandBindingPlay_CanExecute" Executed="CommandBindingPlay_Executed" />
         <CommandBinding Command="Stop" CanExecute="CommandBindingStop_CanExecute" Executed="CommandBindingStop_Executed"/>
+        <CommandBinding Command="Redo" CanExecute="CommandBinding_CanExecute" Executed="CommandBinding_Executed"/>
+
+        <CommandBinding Command="SaveAs" CanExecute="CommandBindingAddSound_CanExecute" Executed="CommandBindingAddSound_Executed"/>
     </Window.CommandBindings>
     <!--#endregion-->
     <TabControl VerticalAlignment="Top">
         <TabItem Name="Play" >
+            <TabItem.InputBindings>
+                <KeyBinding Key="Space" Modifiers="Ctrl" Command="Play"/>
+                <KeyBinding Key="O" Modifiers="Ctrl" Command="Stop"/>
+            </TabItem.InputBindings>
             <TabItem.Header>
                 <Image Source="/Icons/Play.ico" Stretch="Uniform" Width="32"  Height="32"></Image>
             </TabItem.Header>
             
             <Grid>
-                <Grid.InputBindings>
-                    <KeyBinding Key="Space" Modifiers="Ctrl" Command="Play"/>
-                    <KeyBinding Key="O" Modifiers="Ctrl" Command="Stop"/>
-                </Grid.InputBindings>
+                
             
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -43,13 +47,17 @@
                        
                         <!-- Play button. -->
 						<Button Command="Play">
-                        <Image Name="PlayBtn" Source="/Icons/Play.ico"  MouseDown="TogglePaused" Margin="5" Width="16"  Height="16" />
+                        <Image Name="PlayBtn" Source="/Icons/Play.ico" Margin="5" Width="16"  Height="16" />
 						</Button>
 
 
                         <!-- Stop button. -->
-                        <Button>
-                            <Image Source="/Icons/Stop.ico" MouseDown="OnMouseDownStopMedia" Margin="5" Width="16"  Height="16"/>
+                        <Button Command="Stop">
+                            <Image Source="/Icons/Stop.ico" Margin="5" Width="16"  Height="16"/>
+                        </Button>
+                        <!--Loop button-->
+                        <Button Command="Redo">
+                            <Image Source="/Icons/.ico" Margin="5" Width="16"  Height="16"/>
                         </Button>
                     </StackPanel>
 
