@@ -38,7 +38,9 @@
                             MediaOpened="Element_MediaOpened" MediaEnded="Element_MediaEnded"/>
                        
                         <!-- Play button. -->
-                        <Image Name="PlayBtn" Source="/Icons/Play.ico" MouseDown="TogglePaused" Margin="5" Width="16"  Height="16" />
+						<Button Command="">
+                        <Image Name="PlayBtn" Source="/Icons/Play.ico"  MouseDown="TogglePaused" Margin="5" Width="16"  Height="16" />
+						</Button>
 
 
                         <!-- Stop button. -->
@@ -67,6 +69,7 @@
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
+				
             </Grid>
 
         </TabItem>

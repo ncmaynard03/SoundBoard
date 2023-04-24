@@ -38,6 +38,7 @@ namespace SoundBoardWindow
             Lib.TagsList.Add(new Tag("Tag2"));
             Lib.TagsList.Add(new Tag("Tag3"));
             Lib.TagsList.Add(new Tag("Tag4", true));
+
             //StateMachine initialization
             StateMachine.ListOfSoundFiles = new List<SoundFile>();
             StateMachine.Tags = new List<string>();
@@ -112,6 +113,7 @@ namespace SoundBoardWindow
 
         public Library Lib { get; }
         
+        //---------------------------------------
         private void CommandBindingPlay_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
@@ -122,6 +124,7 @@ namespace SoundBoardWindow
         {
            
         }
+        //---------------------------------------
     }
     /*
     public class PlayKey : ICommand
