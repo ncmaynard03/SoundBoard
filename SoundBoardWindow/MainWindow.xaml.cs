@@ -17,33 +17,6 @@ using System.Windows.Input;
 
 namespace SoundBoardWindow  
 {
-    // Create a class that implements ICommand and accepts a delegate.
-    public class SimpleDelegateCommand : ICommand
-    {
-        // Specify the keys and mouse actions that invoke the command. 
-        public Key GestureKey { get; set; }
-        public ModifierKeys GestureModifier { get; set; }
-        //public MouseAction MouseGesture { get; set; } //wont be using this
-
-        Action<object> _executeDelegate;
-
-        public SimpleDelegateCommand(Action<object> executeDelegate)
-        {
-            _executeDelegate = executeDelegate;
-        }
-
-        public void Execute(object parameter)
-        {
-            _executeDelegate(parameter);
-        }
-
-        public bool CanExecute(object parameter) { return true; }
-        public event EventHandler CanExecuteChanged;
-    }
-
-
-
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -138,15 +111,46 @@ namespace SoundBoardWindow
         }
 
         public Library Lib { get; }
-        public SimpleDelegateCommand playSoundCommand, pauseSoundCommand, skipSoundCommand, rotateGUIPosClockwiseCommand, toggleDrawOverAppsCommand;
-
-        private void InitializeCommand()
+        
+        private void CommandBindingPlay_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            
+            e.CanExecute = true;
         }
 
-
+        //write functionality of Play button
+        private void CommandBindingPlay_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+           
+        }
     }
+    /*
+    public class PlayKey : ICommand
+    {
+        public event EventHandler CanExecuteChanged;
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public void Execute(object parameter)
+        {
+            MessageBox.Show("Ctrl + ");
+        }
+    }
+
+    // Create a class that implements ICommand and accepts a delegate.
+    public class PlayCommandContext
+    {
+        public ICommand PlayCommand
+        {
+            get
+            {
+                return new PlayKey();
+            }
+        }
+    }
+    */
 
 
 

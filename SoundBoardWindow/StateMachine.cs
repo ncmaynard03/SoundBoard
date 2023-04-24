@@ -14,14 +14,14 @@ namespace SoundBoardWindow {
         Bottom
     }
 
-    public enum colorSchemes
-    {
-        Gray,
-        Red,
-        Blue,
-        Yellow,
-        Green
-    }
+public enum ColorSchemes
+{
+	Gray,
+	Red,
+	Blue,
+	Yellow,
+	Green
+}
 
     /// <summary>
     /// Holds all the global variables for the rest of the program to use.

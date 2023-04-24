@@ -11,7 +11,14 @@
             <TabItem.Header>
                 <Image Source="/Icons/Play.ico" Stretch="Uniform" Width="32"  Height="32"></Image>
             </TabItem.Header>
+            <Window.CommandBindings>
+                <CommandBinding Command="Play" CanExecute="CommandBindingPlay_CanExecute" Executed="CommandBindingPlay_Executed" />
+            </Window.CommandBindings>
             <Grid>
+                <Grid.InputBindings>
+                    <KeyBinding Key="Space" Modifiers="Ctrl" Command="Play"/>
+                </Grid.InputBindings>
+            
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
