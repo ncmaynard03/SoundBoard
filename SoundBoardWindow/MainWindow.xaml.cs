@@ -116,16 +116,30 @@ namespace SoundBoardWindow
 
         public Library Lib { get; }
         
+        //---------------------------------------
         private void CommandBindingPlay_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
+        {e.CanExecute = true;}
 
-        //write functionality of Play button
+        //functionality of Play button
         private void CommandBindingPlay_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-           
+            if()
+           _player.Play();
         }
+
+        private void CommandBindingStop_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {e.CanExecute = true;}
+
+        //functionality of Stop button
+        private void CommandBindingStop_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if(!StateMachine.PlayingSound == false)
+            {
+                mediaUI.Stop();
+                StateMachine.PlayingSound = false;
+            }
+        }
+        //---------------------------------------
     }
     /*
     public class PlayKey : ICommand
