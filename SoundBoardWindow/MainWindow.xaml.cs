@@ -48,14 +48,14 @@ namespace SoundBoardWindow
             asd.SelectFile();
         }
 
-        private SimpleDelegateCommand _playSoundCommand;
-        public SimpleDelegateCommand PlaySoundCommand { get { return _playSoundCommand; } }
+        private PlayCommand _playSoundCommand;
+        public PlayCommand PlaySoundCommand { get { return _playSoundCommand; } }
             //, pauseSoundCommand, skipSoundCommand, rotateGUIPosClockwiseCommand, toggleDrawOverAppsCommand;
 
         //Initialize Keybinds
         private void InitializeCommand()
         {
-            _playSoundCommand = new SimpleDelegateCommand(x => this.Play_Sound(x));
+            _playSoundCommand = new PlayCommand(x => this.Play_Sound(x));
             
             DataContext = this;
             PlaySoundCommand.GestureKey = Key.P;
@@ -77,18 +77,18 @@ namespace SoundBoardWindow
         //determine if can execute
         private void CommandBindingPlay_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-
+            e.CanExecute = true;
         }
 
         //write functionality of Play button
         private void CommandBindingPlay_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-
+            MessageBox.Show("Play button clicked");
         }
     }
 
     // Create a class that implements ICommand and accepts a delegate.
-    public class SimpleDelegateCommand : ICommand
+    public class PlayCommand : ICommand
     {
         // Specify the keys and mouse actions that invoke the command. 
         public Key GestureKey { get; set; }
@@ -96,7 +96,7 @@ namespace SoundBoardWindow
 
         Action<object> _executeDelegate;
 
-        public SimpleDelegateCommand(Action<object> executeDelegate)
+        public PlayCommand(Action<object> executeDelegate)
         {
             _executeDelegate = executeDelegate;
         }

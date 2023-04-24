@@ -7,9 +7,12 @@
         mc:Ignorable="d"
         Title="SoundBoard" Height="500" Width="300" MaxHeight="700" MaxWidth="500" MinHeight="250" MinWidth="180">
     <Window.CommandBindings>
-        <CommandBinding Command="Play" CanExecute="CommandBindingPlay_CanExecute" Executed="CommandBindingPlay_Executed"/>
+        <CommandBinding Command="Play" CanExecute="CommandBindingPlay_CanExecute" Executed="CommandBindingPlay_Executed" />
     </Window.CommandBindings>
     <Grid>
+        <Grid.InputBindings>
+            <KeyBinding Command="Play" Key="P"/>
+        </Grid.InputBindings>
 	    
 		<Menu Padding="5" HorizontalAlignment="Center" VerticalAlignment="Top" >
             <MenuItem Name="File" >
@@ -30,10 +33,7 @@
             </MenuItem>
         </Menu>
 
-        <Button x:Name="PlayButton" Grid.Column="1" Grid.Row="1" Width="40" Height="40">
-            <Button.InputBindings>
-                <KeyBinding Command="Play" Key="{Binding PlaySoundCommand.GestureKey}" CommandParameter=""/>
-            </Button.InputBindings>
+        <Button x:Name="PlayButton" Command="Play"  Grid.Column="1" Grid.Row="1" Width="40" Height="40">
         </Button>
     </Grid>
 </Window>
