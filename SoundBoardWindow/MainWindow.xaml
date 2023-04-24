@@ -6,12 +6,20 @@
         xmlns:local="clr-namespace:SoundBoardWindow"
         mc:Ignorable="d"
         Title="SoundBoard" Height="500" Width="300" MaxHeight="500" MaxWidth="300" MinHeight="250" MinWidth="150">
+	<Window.CommandBindings>
+		<CommandBinding Command="Play" CanExecute="CommandBindingPlay_CanExecute" Executed="CommandBindingPlay_Executed" />
+	</Window.CommandBindings>
     <TabControl VerticalAlignment="Top">
         <TabItem Name="Play" >
             <TabItem.Header>
                 <Image Source="/Icons/Play.ico" Stretch="Uniform" Width="32"  Height="32"></Image>
             </TabItem.Header>
+            
             <Grid>
+                <Grid.InputBindings>
+                    <KeyBinding Key="Space" Modifiers="Ctrl" Command="Play"/>
+                </Grid.InputBindings>
+            
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>

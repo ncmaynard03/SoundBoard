@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("icons/user-home.ico")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("icons/pause.ico")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("icons/stop.ico")]
 
