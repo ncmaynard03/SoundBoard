@@ -11,7 +11,7 @@
     </Window.CommandBindings>
     <Grid>
         <Grid.InputBindings>
-            <KeyBinding Key="Space" Modifiers="Ctrl" Command="{Binding PlayCommand}"/>
+            <KeyBinding Key="Space" Modifiers="Ctrl" Command="Play"/>
         </Grid.InputBindings>
 	    
 		<Menu Padding="5" HorizontalAlignment="Center" VerticalAlignment="Top" >
@@ -33,7 +33,7 @@
             </MenuItem>
         </Menu>
 
-        <Button x:Name="PlayButton" Command="Play"  Grid.Column="1" Grid.Row="1" Width="40" Height="40">
+        <Button x:Name="PlayButton" Command="Play" Grid.Column="1" Grid.Row="1" Width="40" Height="40">
         </Button>
     </Grid>
 </Window>

@@ -29,8 +29,6 @@ namespace SoundBoardWindow
         public MainWindow()
         {
             InitializeComponent();
-            InitializeCommand();
-            this.DataContext = new PlayCommandContext();
             mp = new MediaPlayer();
 
             //StateMachine initialization
@@ -49,15 +47,7 @@ namespace SoundBoardWindow
             asd.SelectFile();
         }
 
-
-        //Initialize Keybinds
-        private void InitializeCommand()
-        {
-            this.DataContext = new PlayCommandContext();
-        }
-
-
-        //determine if Play command can execute
+        
         private void CommandBindingPlay_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
@@ -66,10 +56,10 @@ namespace SoundBoardWindow
         //write functionality of Play button
         private void CommandBindingPlay_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            MessageBox.Show("Play button clicked");
+           
         }
     }
-
+    /*
     public class PlayKey : ICommand
     {
         public event EventHandler CanExecuteChanged;
@@ -81,7 +71,7 @@ namespace SoundBoardWindow
 
         public void Execute(object parameter)
         {
-            MessageBox.Show("Alt + P");
+            MessageBox.Show("Ctrl + ");
         }
     }
 
@@ -96,6 +86,7 @@ namespace SoundBoardWindow
             }
         }
     }
+    */
 
 
 
