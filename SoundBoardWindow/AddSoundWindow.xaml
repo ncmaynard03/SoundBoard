@@ -15,10 +15,12 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -33,17 +35,17 @@
 
         <!--Begin Row 2: Add Tags-->
         <Label Content="Add Tags" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="0" Grid.Row="2"/>
-        <TextBox x:Name="Tags"  Margin="5" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="23" ToolTip="Separate by commas or press enter in between"/>
-        <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="2">
-            <Button x:Name="Add" Content="Add"  Margin="5" VerticalAlignment="Center"/>
-            <Button x:Name="ClearBtn" Content="Clear"  Margin="5" VerticalAlignment="Center"/>
-        </StackPanel>
+        <TextBox x:Name="Textbox"  Margin="5" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="23" ToolTip="Separate by commas or press enter in between"/>
+        <Button x:Name="Add" Content="Add"  Margin="5" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2"/>
         
         <!--Begin Row 3:-->
-
+        <StackPanel Name="TagBtnStack" Grid.Row="3" Grid.Column="1"></StackPanel>
+        <Button x:Name="ClearBtn" Content="Clear"  Margin="5" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2"/>
+        
+        
 
         <!--Begin Row 6-->
-        <Button x:Name="SubmitBtn"  Content="Submit" Grid.Column="1" Grid.Row="4" Height="25" Margin="5" VerticalAlignment="Bottom"/>
+        <Button x:Name="SubmitBtn"  Content="Submit" Grid.Column="1" Grid.Row="6" Height="25" Margin="5" VerticalAlignment="Bottom"/>
 
     </Grid>
 </Window>

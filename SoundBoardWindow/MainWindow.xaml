@@ -6,26 +6,76 @@
         xmlns:local="clr-namespace:SoundBoardWindow"
         mc:Ignorable="d"
         Title="SoundBoard" Height="500" Width="300" MaxHeight="500" MaxWidth="300" MinHeight="250" MinWidth="150">
-    <Grid>
-	    
-		<Menu Padding="5" HorizontalAlignment="Center" VerticalAlignment="Top" >
-            <MenuItem Name="File" >
-                <MenuItem.Header>
-                    <Image Source="/Icons/Folder.ico" Stretch="UniformToFill" Height="35"></Image>
-                </MenuItem.Header>
-            </MenuItem>
-            <MenuItem Name="Library" >
-                <MenuItem.Header>
-                    <Image Source="/Icons/Book.ico" Stretch="UniformToFill" Height="35"></Image>
-                </MenuItem.Header >
-            </MenuItem>
+    <TabControl VerticalAlignment="Top">
+        <TabItem Name="Play" >
+            <TabItem.Header>
+                <Image Source="/Icons/Play.ico" Stretch="Uniform" Width="32"  Height="32"></Image>
+            </TabItem.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <WrapPanel Grid.Row="0" Grid.Column="0">
+                    <Button>Hellow World</Button>
+                </WrapPanel>
+                <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom">
+                    <!--Button Controls-->
+                    <StackPanel HorizontalAlignment="Center"  Orientation="Horizontal" >
+                        <MediaElement Name="mediaUI" Source="C:/Users/ncmay/source/repos/Soundboard/Sounds/RR.mp3" 
+                            Width="0" Height="0" LoadedBehavior="Manual" UnloadedBehavior="Stop" Stretch="None" 
+                            MediaOpened="Element_MediaOpened" MediaEnded="Element_MediaEnded"/>
+                       
+                        <!-- Play button. -->
+                        <Image Name="PlayBtn" Source="/Icons/Play.ico" MouseDown="TogglePaused" Margin="5" Width="16"  Height="16" />
 
-            <MenuItem Name="Add" Click="AddSound" >
-                <MenuItem.Header>
-                    <Image Source="/Icons/plus.ico" Height="35"></Image>
-                </MenuItem.Header>
-            </MenuItem>
 
-        </Menu>
-    </Grid>
+                        <!-- Stop button. -->
+                        <Image Source="/Icons/Stop.ico" MouseDown="OnMouseDownStopMedia" Margin="5" Width="16"  Height="16"/>
+                    </StackPanel>
+
+                    <!--Sliders -->
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+                            <Slider Name="volumeSlider" VerticalAlignment="Center" ValueChanged="ChangeMediaVolume" Minimum="0" Maximum="1" Value="0.5" Width="70"/>
+                            <!-- Volume slider. This slider allows a Volume range between 0 and 1. -->
+                            <TextBlock Foreground="Black" VerticalAlignment="Center" Margin="5"  >Vol</TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+                            <Slider Name="timelineSlider" Margin="5" ValueChanged="SeekToMediaPosition" Width="140"/>
+                            <!-- Volume slider. This slider allows you to change the speed of the media playback. -->
+                            <TextBlock Foreground="Black" Margin="5"  VerticalAlignment="Center">Speed</TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+                            <Slider Name="speedRatioSlider" VerticalAlignment="Center" ValueChanged="ChangeMediaSpeedRatio" Value="1" Width="70" />
+                            <!-- Seek to slider. Ths slider allows you to jump to different parts of the media playback. -->
+                            <TextBlock Foreground="Black" Margin="5"  VerticalAlignment="Center">Seek</TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+        </TabItem>
+        <TabItem Name="Library">
+            <TabItem.Header>
+                <Image Source="/Icons/Book.ico" Stretch="Uniform" Width="32" Height="32"/>
+            </TabItem.Header>
+            <StackPanel>
+                <Button Click="AddSound">
+                    <Image Source="/Icons/plus.ico" Width="32" ></Image>
+                </Button> 
+            </StackPanel>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <Image Source="/Icons/Settings.ico" Stretch="Uniform" Width="32" Height="32"/>
+            </TabItem.Header>
+        </TabItem>
+    </TabControl>
 </Window>
