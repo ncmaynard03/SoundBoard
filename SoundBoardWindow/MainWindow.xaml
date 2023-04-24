@@ -5,13 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SoundBoardWindow"
         mc:Ignorable="d"
-        Title="SoundBoard" Height="500" Width="300" MaxHeight="500" MaxWidth="300" MinHeight="250" MinWidth="150">
+        Title="SoundBoard" Height="500" Width="300" MaxHeight="700" MaxWidth="500" MinHeight="250" MinWidth="180">
+    <Window.CommandBindings>
+        <CommandBinding Command="Play" CanExecute="CommandBindingPlay_CanExecute" Executed="CommandBindingPlay_Executed"/>
+    </Window.CommandBindings>
     <Grid>
 	    
 		<Menu Padding="5" HorizontalAlignment="Center" VerticalAlignment="Top" >
             <MenuItem Name="File" >
                 <MenuItem.Header>
-                    <Image Source="/Icons/Folder.ico" Stretch="UniformToFill" Height="35"></Image>
+                    <Image Source="/Icons/user-home.ico" Stretch="UniformToFill" Height="35"></Image>
                 </MenuItem.Header>
             </MenuItem>
             <MenuItem Name="Library" >
@@ -25,7 +28,12 @@
                     <Image Source="/Icons/plus.ico" Height="35"></Image>
                 </MenuItem.Header>
             </MenuItem>
-
         </Menu>
+
+        <Button x:Name="PlayButton" Grid.Column="1" Grid.Row="1" Width="40" Height="40">
+            <Button.InputBindings>
+                <KeyBinding Command="Play" Key="{Binding PlaySoundCommand.GestureKey}" CommandParameter=""/>
+            </Button.InputBindings>
+        </Button>
     </Grid>
 </Window>

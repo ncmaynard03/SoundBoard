@@ -14,36 +14,10 @@ using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
 using System.Windows.Input;
+using System.Security.Cryptography.X509Certificates;
 
 namespace SoundBoardWindow  
 {
-    // Create a class that implements ICommand and accepts a delegate.
-    public class SimpleDelegateCommand : ICommand
-    {
-        // Specify the keys and mouse actions that invoke the command. 
-        public Key GestureKey { get; set; }
-        public ModifierKeys GestureModifier { get; set; }
-        //public MouseAction MouseGesture { get; set; } //wont be using this
-
-        Action<object> _executeDelegate;
-
-        public SimpleDelegateCommand(Action<object> executeDelegate)
-        {
-            _executeDelegate = executeDelegate;
-        }
-
-        public void Execute(object parameter)
-        {
-            _executeDelegate(parameter);
-        }
-
-        public bool CanExecute(object parameter) { return true; }
-        public event EventHandler CanExecuteChanged;
-    }
-
-
-
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -55,6 +29,7 @@ namespace SoundBoardWindow
         public MainWindow()
         {
             InitializeComponent();
+            InitializeCommand();
             mp = new MediaPlayer();
 
             //StateMachine initialization
@@ -73,14 +48,71 @@ namespace SoundBoardWindow
             asd.SelectFile();
         }
 
-        public SimpleDelegateCommand playSoundCommand, pauseSoundCommand, skipSoundCommand, rotateGUIPosClockwiseCommand, toggleDrawOverAppsCommand;
+        private SimpleDelegateCommand _playSoundCommand;
+        public SimpleDelegateCommand PlaySoundCommand { get { return _playSoundCommand; } }
+            //, pauseSoundCommand, skipSoundCommand, rotateGUIPosClockwiseCommand, toggleDrawOverAppsCommand;
 
+        //Initialize Keybinds
         private void InitializeCommand()
         {
+            _playSoundCommand = new SimpleDelegateCommand(x => this.Play_Sound(x));
             
+            DataContext = this;
+            PlaySoundCommand.GestureKey = Key.P;
+            PlaySoundCommand.GestureModifier = ModifierKeys.Alt;
         }
 
+        //plays sound after button push
+        public void Play_Sound(object sf)
+        {
+            if (sf != null )
+            {
+                sf = sf as SoundFile;
+                
+            }
 
+            MessageBox.Show("Play_Sound reached!");
+        }
+
+        //determine if can execute
+        private void CommandBindingPlay_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+
+        }
+
+        //write functionality of Play button
+        private void CommandBindingPlay_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
+    }
+
+    // Create a class that implements ICommand and accepts a delegate.
+    public class SimpleDelegateCommand : ICommand
+    {
+        // Specify the keys and mouse actions that invoke the command. 
+        public Key GestureKey { get; set; }
+        public ModifierKeys GestureModifier { get; set; }
+
+        Action<object> _executeDelegate;
+
+        public SimpleDelegateCommand(Action<object> executeDelegate)
+        {
+            _executeDelegate = executeDelegate;
+        }
+
+        
+        public void Execute(object parameter)
+        {
+            _executeDelegate(parameter);
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public event EventHandler CanExecuteChanged;
     }
 
 

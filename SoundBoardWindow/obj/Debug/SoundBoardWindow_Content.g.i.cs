@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("icons/plus.svg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("icons/user-home.ico")]
 
 

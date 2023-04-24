@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Gabe\source\repos\SoundBoard\SoundBoardWindow\obj\Debug\
+C:\Users\gabri\source\repos\SoundBoard\SoundBoardWindow\obj\Debug\
 SoundBoardWindow
 none
 false
 DEBUG;TRACE
-C:\Users\Gabe\source\repos\SoundBoard\SoundBoardWindow\App.xaml
+C:\Users\gabri\source\repos\SoundBoard\SoundBoardWindow\App.xaml
 2-845893059
 
 111958785411
 13-1310406943
 AddSoundWindow.xaml;MainWindow.xaml;
 
-True
+False
 
