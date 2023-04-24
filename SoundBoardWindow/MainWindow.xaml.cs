@@ -30,10 +30,11 @@ namespace SoundBoardWindow
         {
             InitializeComponent();
             InitializeCommand();
+            this.DataContext = new PlayCommandContext();
             mp = new MediaPlayer();
 
             //StateMachine initialization
-            StateMachine.SoundFiles = new List<SoundFile>();
+            StateMachine.ListOfSoundFiles = new List<SoundFile>();
             StateMachine.Tags = new List<string>();
             StateMachine.Opacity = 100;
             StateMachine.DrawOverApps = false;
@@ -48,33 +49,15 @@ namespace SoundBoardWindow
             asd.SelectFile();
         }
 
-        private PlayCommand _playSoundCommand;
-        public PlayCommand PlaySoundCommand { get { return _playSoundCommand; } }
-            //, pauseSoundCommand, skipSoundCommand, rotateGUIPosClockwiseCommand, toggleDrawOverAppsCommand;
 
         //Initialize Keybinds
         private void InitializeCommand()
         {
-            _playSoundCommand = new PlayCommand(x => this.Play_Sound(x));
-            
-            DataContext = this;
-            PlaySoundCommand.GestureKey = Key.P;
-            PlaySoundCommand.GestureModifier = ModifierKeys.Alt;
+            this.DataContext = new PlayCommandContext();
         }
 
-        //plays sound after button push
-        public void Play_Sound(object sf)
-        {
-            if (sf != null )
-            {
-                sf = sf as SoundFile;
-                
-            }
 
-            MessageBox.Show("Play_Sound reached!");
-        }
-
-        //determine if can execute
+        //determine if Play command can execute
         private void CommandBindingPlay_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
@@ -87,7 +70,7 @@ namespace SoundBoardWindow
         }
     }
 
-    ]public class PlayKey : ICommand
+    public class PlayKey : ICommand
     {
         public event EventHandler CanExecuteChanged;
 

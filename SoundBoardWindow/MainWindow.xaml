@@ -11,7 +11,7 @@
     </Window.CommandBindings>
     <Grid>
         <Grid.InputBindings>
-            <KeyBinding Command="Play" Key="P"/>
+            <KeyBinding Key="Space" Modifiers="Ctrl" Command="{Binding PlayCommand}"/>
         </Grid.InputBindings>
 	    
 		<Menu Padding="5" HorizontalAlignment="Center" VerticalAlignment="Top" >
