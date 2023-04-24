@@ -120,7 +120,8 @@ namespace SoundBoardWindow
         //functionality of Play button
         private void CommandBindingPlay_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-           
+            if()
+           _player.Play();
         }
 
         private void CommandBindingStop_CanExecute(object sender, CanExecuteRoutedEventArgs e)
