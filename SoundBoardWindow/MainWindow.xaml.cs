@@ -123,7 +123,7 @@ namespace SoundBoardWindow
         //functionality of Play button
         private void CommandBindingPlay_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if()
+            if(MasterStateMachine.PlayingSound)
            _player.Play();
         }
 
@@ -133,10 +133,10 @@ namespace SoundBoardWindow
         //functionality of Stop button
         private void CommandBindingStop_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if(!StateMachine.PlayingSound == false)
+            if(MasterStateMachine.PlayingSound == true)
             {
                 mediaUI.Stop();
-                StateMachine.PlayingSound = false;
+                MasterStateMachine.PlayingSound = false;
             }
         }
         //---------------------------------------
