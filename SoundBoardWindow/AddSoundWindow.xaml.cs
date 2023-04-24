@@ -43,6 +43,7 @@ namespace SoundBoardWindow
             MasterStateMachine = MainWindow.CurrentInstance.MasterStateMachine;
 
             ofd = new OpenFileDialog();
+            Tags = MasterStateMachine.Tags;
 
 
 
@@ -50,9 +51,7 @@ namespace SoundBoardWindow
             //{
             //    tags.Add(new Tag(lib.Tags[i]));
             //}
-
-            TagButtonStack = TagBtnStack;
-            TagButtonStack.Children.Add(libr.TagsList.DrawPanel);
+            libr = MasterStateMachine.MasterLibrary;
         }
 
         public void SelectFile(object sender=null, RoutedEventArgs e=null)
@@ -104,13 +103,19 @@ namespace SoundBoardWindow
             var newTags = str.Split(',');
             foreach(var i in newTags)
             {
-                libr.TagsList.Add(new Tag(i));
+                if (str != "")
+                    libr.TagsList.Add(new Tag(i));
             }
+            Tags.IsEditMode = true;
+            TagButtonStack = TagBtnStack;
+            TagButtonStack.Children.Clear();
+            TagButtonStack.Children.Add(Tags.DrawPanel);
         }
 
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
             libr.add(new SoundFile(FileName, FilePath, libr.TagsList.CopyList()));
+            this.Close();
         }
     }
 

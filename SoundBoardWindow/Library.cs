@@ -16,7 +16,6 @@ namespace SoundBoardWindow
             Name = name;
             Included = included;
         }
-
         public string Name { get; set; }
         public bool Included { get; set; }
 
@@ -29,6 +28,11 @@ namespace SoundBoardWindow
     public class TagList
     {
         private List<Tag> _usedTags;
+        public int Count { get
+            {
+                return ListOfTags.Count;
+            }
+                }
 
         public TagList AllTags { get; set; }
         public List<Tag> ListOfTags { get; set; }
@@ -39,7 +43,7 @@ namespace SoundBoardWindow
             Debug.WriteLine("\n\n New Taglist\n\n");
             MasterStateMachine = sm;
             _usedTags = new List<Tag>();
-            ListOfTags = sm.ListOfTags;
+            ListOfTags = new List<Tag>();
             DrawPanel = new StackPanel();
             Debug.WriteLine("FInished tl init\n\n");
         }
@@ -196,23 +200,20 @@ namespace SoundBoardWindow
 
             ListOfTags = sm.ListOfTags;
             TagsList = sm.Tags;
-            TagsList.ListOfTags = ListOfTags;
 
             
 
-            TagsList.IsEditMode = true;
         }
 
         public void add(SoundFile sf)
         {
-            Debug.WriteLine("\n\nLibrary.add call");
-            Debug.WriteLine("\n\nLibrary.Add call\n\n");
+            Debug.WriteLine("\n\nLibrary.add call: " + sf);
             try
             {
                 SoundFiles.Add(sf);
-                for(int i = 0; i < sf.tags.Count; i++)
+                for(int i = 0; i < sf.Tags.Count; i++)
                 {
-                    var tag = sf.tags[i];
+                    var tag = sf.ListOfTags[i];
 
                     //ignores iteration if tag is already in list
                     if (TagsList.Contains(tag))

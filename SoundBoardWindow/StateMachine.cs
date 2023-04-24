@@ -44,6 +44,7 @@ namespace SoundBoardWindow {
         {
             Debug.WriteLine("\n\nNew StateMachine\n\n");
             Tags = new TagList(this);
+            ListOfTags = Tags.ListOfTags;
             MasterLibrary = new Library(this);
         }
     }

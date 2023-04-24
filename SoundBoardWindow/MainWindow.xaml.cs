@@ -41,6 +41,7 @@ namespace SoundBoardWindow
 
             _player = new MediaPlayer();
             Lib = new Library(MasterStateMachine);
+            
 
 
             Debug.WriteLine("\n\nAbout to make first tag: ");

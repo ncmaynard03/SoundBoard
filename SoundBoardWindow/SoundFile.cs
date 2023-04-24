@@ -2,16 +2,12 @@
 using System.Collections.Generic;
 using System.Media;
 using System.Windows.Media;
+using System.Diagnostics;
 
 namespace SoundBoardWindow
 {
     public class SoundFile
     {
-        private string _name;
-        private string _filePath;
-        private int _playbackTime;
-        private TagList _tags;
-        private Uri _uri;
 
         /// <summary>
         /// Receive information from user input and then create a sound file object 
@@ -21,16 +17,22 @@ namespace SoundBoardWindow
         /// <param name="tags"></param>
         public SoundFile(string name, string filePath, TagList tags)
         {
-            _name = name;
-            _filePath = filePath;
-            _uri = new Uri(filePath);
-            _tags = tags;
+            Name = name;
+            FilePath = filePath;
+            FileURI = new Uri(filePath);
+            Tags = tags;
+            Debug.WriteLine("New soundfile: " + this);
         }
 
         public string Name { get; set; }
         public string FilePath { get; set; }
         public int playbackTime { get; }
-        public List<Tag> tags { get; }
-        public Uri uri { get; }
+        public TagList Tags { get; set; }
+        public List<Tag> ListOfTags { get; set; }
+        public Uri FileURI { get; }
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
