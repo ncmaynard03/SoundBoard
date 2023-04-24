@@ -14,7 +14,7 @@ namespace SoundBoardWindow {
         Bottom
     }
 
-    public enum colorSchemes
+    public enum ColorSchemes
     {
         Gray,
         Red,
@@ -29,24 +29,15 @@ namespace SoundBoardWindow {
     public static class StateMachine
     {
         //Have Library.cs talk to this list of SoundFiles
-        public static List<SoundFile> ListOfSoundFiles { get; set; }
-        public static List<SoundFile> SoundFiles { get; set; }
-
+        public static bool PlayingSound { get; set; } = false;
+        public static bool DrawOverApps { get; set; } = true;
+        public static ushort Opacity { get; set; } = 100;
+        public static List<SoundFile> ListOfSoundFiles { get; set; } = new List<SoundFile>();
+        public static DockPositions CurrDockPos { get; set; } = DockPositions.Left;
         //Have Library.cs talk to this list of tags
-        private static List<string> _tags;
-        public static List<string> Tags { get; set; }
-
-        private static UInt16 _opacity;
-        public static UInt16 Opacity { get; set; }
-
-        private static bool _drawOverApps;
-        public static bool DrawOverApps { get; set; }
-
-        private static DockPositions _currDockPos;
-        public static DockPositions CurrDockPos { get; set; }
-
-        private static bool _playingSound;
-        public static bool PlayingSound { get; set; }
+        public static TagList Tags { get; set; } = new TagList();
+        public static List<Tag> ListOfTags { get; set; } = Tags.ListOfTags;
+        public static Library MasterLibrary { get; set; } = new Library();
 
     }
 }

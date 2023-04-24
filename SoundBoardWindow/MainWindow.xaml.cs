@@ -57,6 +57,10 @@ namespace SoundBoardWindow
         public MainWindow()
         {
             InitializeComponent();
+            //StateMachine initialization
+            
+
+
             _player = new MediaPlayer();
             Lib = new Library();
 
@@ -65,13 +69,6 @@ namespace SoundBoardWindow
             Lib.TagsList.Add(new Tag("Tag2"));
             Lib.TagsList.Add(new Tag("Tag3"));
             Lib.TagsList.Add(new Tag("Tag4", true));
-            //StateMachine initialization
-            StateMachine.SoundFiles = new List<SoundFile>();
-            StateMachine.Tags = new List<string>();
-            StateMachine.Opacity = 100;
-            StateMachine.DrawOverApps = false;
-            StateMachine.CurrDockPos = DockPositions.Left;
-            StateMachine.PlayingSound = false;
         }
 
         public void AddSound(object sender, RoutedEventArgs e)
@@ -79,11 +76,12 @@ namespace SoundBoardWindow
             _asd = new AddSoundWindow();
             _asd.Show();
             _asd.SelectFile();
+            
         }
 
         public void TogglePaused(Object Sender, MouseButtonEventArgs args)
         {
-
+            StateMachine.PlayingSound = !StateMachine.PlayingSound;
         }
 
         void OnMouseDownPlayMedia(object sender, MouseButtonEventArgs args)

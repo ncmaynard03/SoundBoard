@@ -29,26 +29,34 @@ namespace SoundBoardWindow
     {
         private List<Tag> _usedTags;
 
-        public List<Tag> AllTags { get; set; }
+        public TagList AllTags { get; set; }
+        public List<Tag> ListOfTags { get; set; }
         public bool IsEditMode { get; set; }
         public StackPanel DrawPanel { get; set; }
 
         public TagList() {
             _usedTags = new List<Tag>();
-            AllTags = new List<Tag>();
+            ListOfTags = StateMachine.ListOfTags;
             DrawPanel = new StackPanel();
             UpdatePanel();
+        }
+
+        public TagList CopyList()
+        {
+            return new TagList();
+            
         }
 
         public void Add(Tag tag)
         {
             
-            if (AllTags.Contains(tag)) {
+            
+            if (StateMachine.Tags.Contains(tag)) {
                 Debug.WriteLine("Already included");
                 return;
             }
 
-            AllTags.Add(tag);
+            StateMachine.Tags.Add(tag);
             if (tag.Included && !_usedTags.Contains(tag))
                 _usedTags.Add(tag);
             Debug.WriteLine(this);
@@ -57,15 +65,31 @@ namespace SoundBoardWindow
 
         public bool Contains(Tag tag)
         {
-            return AllTags.Contains(tag);
+            for(int i = 0; i < StateMachine.ListOfTags.Count; i++)
+            {
+                if (StateMachine.ListOfTags[i].Name == tag.Name)
+                    return true;
+            }
+            return false;
+        }
+
+        public bool Contains(SoundFile sf)
+        {
+            for (int i = 0; i < StateMachine.ListOfSoundFiles.Count; i++)
+            {
+                if (StateMachine.ListOfSoundFiles[i].Name == sf.Name)
+                    return true;
+            }
+            return false;
         }
 
         
 
         public void Toggle(Tag tag)
         {
-            if (!AllTags.Contains(tag))
+            if (!StateMachine.ListOfTags.Contains(tag))
                 return;
+
 
             tag.Included = !tag.Included;
 
@@ -82,7 +106,7 @@ namespace SoundBoardWindow
             {
                 var wp = new WrapPanel();
                 DrawPanel.Children.Add(wp);
-                foreach (Tag tag in AllTags)
+                foreach (Tag tag in StateMachine.ListOfTags)
                 {
                     var text = "#" + tag.Name;
                     var l = new Label();
@@ -99,7 +123,7 @@ namespace SoundBoardWindow
             DrawPanel.Children.Add(new Separator());
             DrawPanel.Children.Add(unusedWP);
 
-            foreach (Tag tag in AllTags)
+            foreach (Tag tag in StateMachine.ListOfTags)
             {
                 Debug.WriteLine(tag);
 
@@ -140,9 +164,9 @@ namespace SoundBoardWindow
                 str += "\n    " + _usedTags[i];
             }
             str += "\nAll tags: ";
-            for (int i = 0; i < AllTags.Count; i++)
+            for (int i = 0; i < StateMachine.ListOfTags.Count; i++)
             {
-                str += "\n    " + AllTags[i];
+                str += "\n    " + StateMachine.ListOfTags[i];
             }
             return str + "\n\n\n";
         }
@@ -153,6 +177,7 @@ namespace SoundBoardWindow
         private List<SoundFile> _soundFiles;
         public TagList TagsList { get; set; }
         private int _fileCount;
+
         public List<Tag> ListOfTags { get; set; }
 
         public Library()
@@ -160,7 +185,7 @@ namespace SoundBoardWindow
             _soundFiles = new List<SoundFile>();
             ListOfTags = new List<Tag>();
             TagsList = new TagList();
-            TagsList.AllTags = ListOfTags;
+            TagsList.AllTags.ListOfTags = ListOfTags;
             _fileCount = 0;
 
             
@@ -194,7 +219,6 @@ namespace SoundBoardWindow
         }
 
         public List<SoundFile> SoundFiles { get; }
-        public List<Tag> AllTags { get; }
         public int FileCount { get; }
     }
 }

@@ -75,7 +75,11 @@
         <TabItem>
             <TabItem.Header>
                 <Image Source="/Icons/Settings.ico" Stretch="Uniform" Width="32" Height="32"/>
+                
             </TabItem.Header>
+            <Grid>
+                
+            </Grid>
         </TabItem>
     </TabControl>
 </Window>

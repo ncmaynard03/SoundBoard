@@ -35,8 +35,8 @@
 
         <!--Begin Row 2: Add Tags-->
         <Label Content="Add Tags" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="0" Grid.Row="2"/>
-        <TextBox x:Name="Textbox"  Margin="5" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="23" ToolTip="Separate by commas or press enter in between"/>
-        <Button x:Name="Add" Content="Add"  Margin="5" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2"/>
+        <TextBox x:Name="TagTextbox" PreviewTextInput="TextBox_PreviewTextInput"  Margin="5" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="23" ToolTip="Separate by commas or press enter in between"/>
+        <Button x:Name="Add" Content="Add"  Margin="5" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" Click="Add_Click"/>
         
         <!--Begin Row 3:-->
         <StackPanel Name="TagBtnStack" Grid.Row="3" Grid.Column="1"></StackPanel>
@@ -45,7 +45,7 @@
         
 
         <!--Begin Row 6-->
-        <Button x:Name="SubmitBtn"  Content="Submit" Grid.Column="1" Grid.Row="6" Height="25" Margin="5" VerticalAlignment="Bottom"/>
+        <Button x:Name="SubmitBtn"  Content="Submit" Grid.Column="1" Grid.Row="6" Height="25" Margin="5" VerticalAlignment="Bottom" Click="SubmitBtn_Click"/>
 
     </Grid>
 </Window>

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Diagnostics;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 namespace SoundBoardWindow
 {
@@ -86,11 +87,31 @@ namespace SoundBoardWindow
             }
         }
 
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z0-9,]+"); // regular expression to match anything that's not a letter, number, or comma
+            e.Handled = regex.IsMatch(e.Text); // set Handled to true if the input doesn't match the regular expression
+        }
+
         public virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            var str = TagTextbox.Text;
+            var newTags = str.Split(',');
+            foreach(var i in newTags)
+            {
+                libr.TagsList.Add(new Tag(i));
+            }
+        }
+
+        private void SubmitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            libr.add(new SoundFile(FileName, FilePath, libr.TagsList.CopyList()));
+        }
     }
 
 }
