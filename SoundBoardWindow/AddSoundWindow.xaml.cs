@@ -34,13 +34,13 @@ namespace SoundBoardWindow
         public Library libr;
         public TagList Tags { get; set; }
         public StackPanel TagButtonStack { get; set; }
-
+        public StateMachine MasterStateMachine { get; set; }
         public AddSoundWindow()
         {
             InitializeComponent();
             _filePath = _fileName = "";
             DataContext = this;
-            libr = MainWindow.CurrentInstance.Lib;
+            MasterStateMachine = MainWindow.CurrentInstance.MasterStateMachine;
 
             ofd = new OpenFileDialog();
 

@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
 using System.Windows.Input;
+using System.Diagnostics;
 
 namespace SoundBoardWindow  
 {
@@ -26,19 +27,23 @@ namespace SoundBoardWindow
         private AddSoundWindow _asd;
         private MediaPlayer _player;
         public static MainWindow CurrentInstance { get; private set; }
+
         public StateMachine MasterStateMachine { get; set; }
         public MainWindow()
         {
             MasterStateMachine = new StateMachine();
+            CurrentInstance = this;
             InitializeComponent();
+            Debug.WriteLine("\n\nWindow Initialized\n\n");
             //StateMachine initialization
             
 
 
             _player = new MediaPlayer();
-            Lib = new Library();
+            Lib = new Library(MasterStateMachine);
 
-            CurrentInstance = this;
+
+            Debug.WriteLine("\n\nAbout to make first tag: ");
             Lib.TagsList.Add(new Tag("Tag1", true));
             Lib.TagsList.Add(new Tag("Tag2"));
             Lib.TagsList.Add(new Tag("Tag3"));
@@ -55,7 +60,7 @@ namespace SoundBoardWindow
 
         public void TogglePaused(Object Sender, MouseButtonEventArgs args)
         {
-            StateMachine.PlayingSound = !StateMachine.PlayingSound;
+            MasterStateMachine.PlayingSound = !MasterStateMachine.PlayingSound;
         }
 
         void OnMouseDownPlayMedia(object sender, MouseButtonEventArgs args)

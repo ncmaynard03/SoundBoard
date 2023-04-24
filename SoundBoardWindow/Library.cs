@@ -19,6 +19,7 @@ namespace SoundBoardWindow
 
         public string Name { get; set; }
         public bool Included { get; set; }
+
         public override string ToString()
         {
             return Name + (Included ? "- Included" : "");
@@ -33,30 +34,33 @@ namespace SoundBoardWindow
         public List<Tag> ListOfTags { get; set; }
         public bool IsEditMode { get; set; }
         public StackPanel DrawPanel { get; set; }
-
-        public TagList() {
+        public StateMachine MasterStateMachine { get; set; }
+        public TagList(StateMachine sm) {
+            Debug.WriteLine("\n\n New Taglist\n\n");
+            MasterStateMachine = sm;
             _usedTags = new List<Tag>();
-            ListOfTags = StateMachine.ListOfTags;
+            ListOfTags = sm.ListOfTags;
             DrawPanel = new StackPanel();
-            UpdatePanel();
+            Debug.WriteLine("FInished tl init\n\n");
         }
 
         public TagList CopyList()
         {
-            return new TagList();
+
+            return new TagList(MasterStateMachine);
             
         }
 
         public void Add(Tag tag)
         {
+            Debug.WriteLine("\n\nTagList.Add call " + tag.Name);
             
-            
-            if (StateMachine.Tags.Contains(tag)) {
+            if (MasterStateMachine.Tags.Contains(tag)) {
                 Debug.WriteLine("Already included");
                 return;
             }
 
-            StateMachine.Tags.Add(tag);
+            MasterStateMachine.ListOfTags.Add(tag);
             if (tag.Included && !_usedTags.Contains(tag))
                 _usedTags.Add(tag);
             Debug.WriteLine(this);
@@ -65,19 +69,24 @@ namespace SoundBoardWindow
 
         public bool Contains(Tag tag)
         {
-            for(int i = 0; i < StateMachine.ListOfTags.Count; i++)
+            Debug.WriteLine("\n\nTagList.Contains Call: " + tag.Name);
+            for(int i = 0; i < MasterStateMachine.ListOfTags.Count; i++)
             {
-                if (StateMachine.ListOfTags[i].Name == tag.Name)
+                if (MasterStateMachine.ListOfTags[i].Name == tag.Name)
+                {
+                    Debug.WriteLine("Tag Found");
                     return true;
+                }
             }
+            Debug.WriteLine("Tag Not Found");
             return false;
         }
 
         public bool Contains(SoundFile sf)
         {
-            for (int i = 0; i < StateMachine.ListOfSoundFiles.Count; i++)
+            for (int i = 0; i < MasterStateMachine.ListOfSoundFiles.Count; i++)
             {
-                if (StateMachine.ListOfSoundFiles[i].Name == sf.Name)
+                if (MasterStateMachine.ListOfSoundFiles[i].Name == sf.Name)
                     return true;
             }
             return false;
@@ -87,7 +96,7 @@ namespace SoundBoardWindow
 
         public void Toggle(Tag tag)
         {
-            if (!StateMachine.ListOfTags.Contains(tag))
+            if (!MasterStateMachine.ListOfTags.Contains(tag))
                 return;
 
 
@@ -100,13 +109,13 @@ namespace SoundBoardWindow
         public void UpdatePanel()
         {
             
-            Debug.WriteLine("\n\nTagList.UpdateUI call\n\n");
+            Debug.WriteLine("\n\nTagList.UpdatePanel call\n\n");
             DrawPanel.Children.Clear();
             if (!IsEditMode)
             {
                 var wp = new WrapPanel();
                 DrawPanel.Children.Add(wp);
-                foreach (Tag tag in StateMachine.ListOfTags)
+                foreach (Tag tag in ListOfTags)
                 {
                     var text = "#" + tag.Name;
                     var l = new Label();
@@ -123,7 +132,7 @@ namespace SoundBoardWindow
             DrawPanel.Children.Add(new Separator());
             DrawPanel.Children.Add(unusedWP);
 
-            foreach (Tag tag in StateMachine.ListOfTags)
+            foreach (Tag tag in ListOfTags)
             {
                 Debug.WriteLine(tag);
 
@@ -164,9 +173,9 @@ namespace SoundBoardWindow
                 str += "\n    " + _usedTags[i];
             }
             str += "\nAll tags: ";
-            for (int i = 0; i < StateMachine.ListOfTags.Count; i++)
+            for (int i = 0; i < MasterStateMachine.ListOfTags.Count; i++)
             {
-                str += "\n    " + StateMachine.ListOfTags[i];
+                str += "\n    " + MasterStateMachine.ListOfTags[i];
             }
             return str + "\n\n\n";
         }
@@ -174,32 +183,33 @@ namespace SoundBoardWindow
 
     public class Library
     {
-        private List<SoundFile> _soundFiles;
+        private List<SoundFile> ListOfSoundFiles { get; set; }
         public TagList TagsList { get; set; }
-        private int _fileCount;
-
+        public StateMachine MasterStateMachine { get; set; }
         public List<Tag> ListOfTags { get; set; }
 
-        public Library()
+        public Library(StateMachine sm)
         {
-            _soundFiles = new List<SoundFile>();
-            ListOfTags = new List<Tag>();
-            TagsList = new TagList();
-            TagsList.AllTags.ListOfTags = ListOfTags;
-            _fileCount = 0;
+            Debug.WriteLine("\n\nNew Library\n\n");
+            MasterStateMachine = sm;
+            SoundFiles = sm.ListOfSoundFiles;
+
+            ListOfTags = sm.ListOfTags;
+            TagsList = sm.Tags;
+            TagsList.ListOfTags = ListOfTags;
 
             
 
             TagsList.IsEditMode = true;
-            TagsList.UpdatePanel();
         }
 
         public void add(SoundFile sf)
         {
+            Debug.WriteLine("\n\nLibrary.add call");
             Debug.WriteLine("\n\nLibrary.Add call\n\n");
             try
             {
-                _soundFiles.Add(sf);
+                SoundFiles.Add(sf);
                 for(int i = 0; i < sf.tags.Count; i++)
                 {
                     var tag = sf.tags[i];
@@ -209,7 +219,6 @@ namespace SoundBoardWindow
                         continue;
 
                     TagsList.Add(tag);
-                    _fileCount++;
                 }
             }
             catch(Exception e)
