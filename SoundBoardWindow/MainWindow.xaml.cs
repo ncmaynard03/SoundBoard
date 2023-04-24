@@ -87,32 +87,31 @@ namespace SoundBoardWindow
         }
     }
 
-    // Create a class that implements ICommand and accepts a delegate.
-    public class PlayCommand : ICommand
+    ]public class PlayKey : ICommand
     {
-        // Specify the keys and mouse actions that invoke the command. 
-        public Key GestureKey { get; set; }
-        public ModifierKeys GestureModifier { get; set; }
-
-        Action<object> _executeDelegate;
-
-        public PlayCommand(Action<object> executeDelegate)
-        {
-            _executeDelegate = executeDelegate;
-        }
-
-        
-        public void Execute(object parameter)
-        {
-            _executeDelegate(parameter);
-        }
+        public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
             return true;
         }
 
-        public event EventHandler CanExecuteChanged;
+        public void Execute(object parameter)
+        {
+            MessageBox.Show("Alt + P");
+        }
+    }
+
+    // Create a class that implements ICommand and accepts a delegate.
+    public class PlayCommandContext
+    {
+        public ICommand PlayCommand
+        {
+            get
+            {
+                return new PlayKey();
+            }
+        }
     }
 
 
