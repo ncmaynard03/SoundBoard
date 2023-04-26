@@ -5,33 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SoundBoardWindow"
         mc:Ignorable="d"
-        Title="SoundBoard" Height="500" Width="300" MaxHeight="500" MaxWidth="300" MinHeight="250" MinWidth="150">
-    <!--#region Commands-->
-	<Window.CommandBindings>
-		<CommandBinding Command="Play" CanExecute="CommandBindingPlay_CanExecute" Executed="CommandBindingPlay_Executed" />
-        <CommandBinding Command="Stop" CanExecute="CommandBindingStop_CanExecute" Executed="CommandBindingStop_Executed"/>
-        <CommandBinding Command="Redo" CanExecute="CommandBinding_CanExecute" Executed="CommandBinding_Executed"/>
-
-        <CommandBinding Command="SaveAs" CanExecute="CommandBindingAddSound_CanExecute" Executed="CommandBindingAddSound_Executed"/>
-    </Window.CommandBindings>
-    <!--#endregion-->
+        Title="SoundBoard" Height="500" Width="300" MaxHeight="700" MaxWidth="500" MinWidth="150">
     <TabControl VerticalAlignment="Top">
         <TabItem Name="Play" >
-            <TabItem.InputBindings>
-                <KeyBinding Key="Space" Modifiers="Ctrl" Command="Play"/>
-                <KeyBinding Key="O" Modifiers="Ctrl" Command="Stop"/>
-            </TabItem.InputBindings>
             <TabItem.Header>
                 <Image Source="/Icons/Play.ico" Stretch="Uniform" Width="32"  Height="32"></Image>
             </TabItem.Header>
             
             <Grid>
-                
-            
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="25"/>
                     <RowDefinition Height="50"/>
+                    
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -46,18 +32,18 @@
                             MediaOpened="Element_MediaOpened" MediaEnded="Element_MediaEnded"/>
                        
                         <!-- Play button. -->
-						<Button Command="Play">
-                        <Image Name="PlayBtn" Source="/Icons/Play.ico" Margin="5" Width="16"  Height="16" />
+						<Button Click="Button_Play_Click" Width="25" Height="25">
+                        <Image Name="PlayBtn" Source="/Icons/Play.ico" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="UniformToFill"/>
 						</Button>
 
 
                         <!-- Stop button. -->
-                        <Button Command="Stop">
-                            <Image Source="/Icons/Stop.ico" Margin="5" Width="16"  Height="16"/>
+                        <Button  Width="25" Height="25">
+                        <Image Source="/Icons/Stop.ico" Margin="4"  VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="UniformToFill"/>
                         </Button>
                         <!--Loop button-->
-                        <Button Command="Redo">
-                            <Image Source="/Icons/.ico" Margin="5" Width="16"  Height="16"/>
+                        <Button  Width="25" Height="25">
+                        <Image Source="/Icons/loop.ico" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="UniformToFill"/>
                         </Button>
                     </StackPanel>
 
@@ -71,7 +57,7 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                            <TextBlock Foreground="Black" Margin="5"  VerticalAlignment="Center">Speed</TextBlock>
+                        <TextBlock Foreground="Black" Margin="5"  VerticalAlignment="Center" Text="{Binding }"></TextBlock>
                             <Slider Name="timelineSlider" Margin="5" ValueChanged="SeekToMediaPosition" Width="140"/>
                             <!-- Volume slider. This slider allows you to change the speed of the media playback. -->
                         </StackPanel>
@@ -93,7 +79,10 @@
             <StackPanel>
                 <Button Click="AddSound">
                     <Image Source="/Icons/plus.ico" Width="32" ></Image>
-                </Button> 
+                </Button>
+
+                <Separator/>
+                
             </StackPanel>
         </TabItem>
         <TabItem>

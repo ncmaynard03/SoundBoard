@@ -40,7 +40,7 @@
         
         <!--Begin Row 3:-->
         <StackPanel Name="TagBtnStack" Grid.Row="3" Grid.Column="1"></StackPanel>
-        <Button x:Name="ClearBtn" Content="Clear"  Margin="5" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2"/>
+        <Button x:Name="ClearBtn" Content="Clear" Click="ClearBtn_Click" Margin="5" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2"/>
         
         
 

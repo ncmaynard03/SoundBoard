@@ -63,6 +63,7 @@ namespace SoundBoardWindow
 
             FilePath = ofd.FileName;
             FileName = System.IO.Path.GetFileNameWithoutExtension(ofd.FileName);
+            
         }
 
         public string FileName{ get { return _fileName; } set
@@ -114,8 +115,19 @@ namespace SoundBoardWindow
 
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
-            libr.add(new SoundFile(FileName, FilePath, libr.TagsList.CopyList()));
+            libr.Add(new SoundFile(FileName, FilePath, libr.TagsList.CopyList()), 13); //Fix add actual time variable
+            foreach (var item in MasterStateMachine.MasterLibrary.SoundFiles)
+            {
+                Debug.WriteLine(item);
+            }
             this.Close();
+        }
+
+        private void ClearBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Tags.IsEditMode = true;
+            foreach()
+            
         }
     }
 

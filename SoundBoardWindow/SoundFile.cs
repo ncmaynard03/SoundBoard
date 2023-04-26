@@ -15,24 +15,29 @@ namespace SoundBoardWindow
         /// <param name="name">name of soundFile</param>
         /// <param name="filePath">path to reach file stored locally</param>
         /// <param name="tags"></param>
-        public SoundFile(string name, string filePath, TagList tags)
+        public SoundFile(string name, string filePath, TagList tags, int playbackTime)
         {
             Name = name;
             FilePath = filePath;
             FileURI = new Uri(filePath);
+            PlayBackTime = playbackTime;
             Tags = tags;
             Debug.WriteLine("New soundfile: " + this);
         }
+        private string name;
+        private string filePath;
+        private int playBackTime;
+        private TagList tags;
 
         public string Name { get; set; }
         public string FilePath { get; set; }
-        public int playbackTime { get; }
+        public int PlayBackTime { get; set; }
         public TagList Tags { get; set; }
         public List<Tag> ListOfTags { get; set; }
         public Uri FileURI { get; }
         public override string ToString()
         {
-            return Name;
+            return Name + " (" + FilePath + ")" + PlayBackTime;
         }
     }
 }
