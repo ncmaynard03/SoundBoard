@@ -116,8 +116,8 @@ namespace SoundBoardWindow
 
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
-            var sf = new SoundFile(FileName, FilePath, libr.TagsList.CopyList());
-            libr.add(sf);
+            var sf = new SoundFile(FileName, FilePath, libr.TagsList.CopyList(),0);
+            libr.Add(sf);
             this.Close();
             MainWindow.CurrentInstance.DisplaySounds.Children.Add(NewSoundButton(sf));
         }
@@ -140,6 +140,11 @@ namespace SoundBoardWindow
         private void Btn_Click(object sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();
+        }
+
+        private void ClearBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 
