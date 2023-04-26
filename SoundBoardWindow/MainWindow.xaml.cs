@@ -93,9 +93,10 @@ namespace SoundBoardWindow
         public Library Lib { get; }
         
         //---------------------------------------MEDIA CONTROLS
+        
         private void KeyDown(object sender, KeyEventArgs e)
         {
-            if ((Keyboard.Modifiers & ModifierKeys.Alt) == ModifierKeys.Alt) // Is Alt key pressed
+            if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control) // Is Alt key pressed
             {
                 //Keybinding for play
                 if (Keyboard.IsKeyDown(Key.Space))
