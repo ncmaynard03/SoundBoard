@@ -145,5 +145,10 @@
   <ItemGroup>
     <Resource Include="Icons\loop.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="SoundExamples\owl-144750.mp3" />
+    <Content Include="SoundExamples\typical-trap-loop-2b-130751.mp3" />
+    <Content Include="SoundExamples\yeah-boy-114748.mp3" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
