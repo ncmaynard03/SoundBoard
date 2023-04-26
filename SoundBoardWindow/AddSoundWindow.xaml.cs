@@ -65,7 +65,10 @@ namespace SoundBoardWindow
 
             FilePath = ofd.FileName;
             FileName = System.IO.Path.GetFileNameWithoutExtension(ofd.FileName);
-            
+            Tags.IsEditMode = true;
+            TagButtonStack = TagBtnStack;
+            TagButtonStack.Children.Clear();
+            TagButtonStack.Children.Add(Tags.DrawPanel);
         }
 
         public string FileName{ get { return _fileName; } set
@@ -109,31 +112,34 @@ namespace SoundBoardWindow
                 if (str != "")
                     libr.TagsList.Add(new Tag(i));
             }
-            Tags.IsEditMode = true;
-            TagButtonStack = TagBtnStack;
-            TagButtonStack.Children.Clear();
-            TagButtonStack.Children.Add(Tags.DrawPanel);
         }
 
-        //Adds to 
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
-            int time = 3;
-            libr.Add(new SoundFile(FileName, FilePath, libr.TagsList.CopyList(), time)); //Fix add actual time variable
-            
+            var sf = new SoundFile(FileName, FilePath, libr.TagsList.CopyList());
+            libr.add(sf);
+            this.Close();
+            MainWindow.CurrentInstance.DisplaySounds.Children.Add(NewSoundButton(sf));
         }
 
-        //Clear implementation. Im guessing it removed included tags
-        private void ClearBtn_Click(object sender, RoutedEventArgs e)
+        private Button NewSoundButton(SoundFile sf)
         {
-            if(TagBtnStack.Children.Count > 0)
+            var btn = new Button();
+            btn.Content = sf.Name;
+            btn.Click += (sender, args) =>
             {
-                Tags.IsEditMode = true;
+                var player = MainWindow.CurrentInstance.Player;
+                player.Open(sf.FileURI);
+                player.Play();
+            };
+            btn.Width = 60;
+            btn.Height = 30;
+            return btn;
+        }
 
-            }
-            
-            
-            
+        private void Btn_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 

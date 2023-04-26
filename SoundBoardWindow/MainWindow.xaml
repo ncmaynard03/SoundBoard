@@ -14,7 +14,8 @@
             </Style>
         </ResourceDictionary>
     </Window.Resources>
-    <TabControl VerticalAlignment="Top">
+    
+    <TabControl VerticalAlignment="Top" Height="459" Margin="0,10,0,0">    
         <TabItem Name="Play" >
             <TabItem.Header>
                 <Image Source="/Icons/Play.ico" Stretch="Uniform" Width="32"  Height="32"></Image>
@@ -30,8 +31,8 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <WrapPanel Grid.Row="0" Grid.Column="0" >
-                    <Button>Hellow World</Button>
+                <WrapPanel Name="DisplaySounds" Grid.Row="0" Grid.Column="0" >
+                    
                 </WrapPanel>
                 <!--Button Controls-->
                     <StackPanel HorizontalAlignment="Center"  Orientation="Horizontal" Grid.Row="1">
@@ -56,7 +57,7 @@
                     </StackPanel>
 
                     <!--Sliders -->
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="3">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="2" Margin="0,0,0,0">
 
                         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                             <TextBlock Foreground="Black" VerticalAlignment="Center" Margin="5"  >Vol</TextBlock>
@@ -87,10 +88,7 @@
             <StackPanel>
                 <Button Click="AddSound">
                     <Image Source="/Icons/plus.ico" Width="32" ></Image>
-                </Button>
-
-                <Separator/>
-                
+                </Button> 
             </StackPanel>
         </TabItem>
         <TabItem>
