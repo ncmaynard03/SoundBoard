@@ -190,7 +190,7 @@ namespace SoundBoardWindow
 
         }
 
-        public void add(SoundFile sf)
+        public void Add(SoundFile sf)
         {
             Debug.WriteLine("\n\nLibrary.add call: " + sf);
             try

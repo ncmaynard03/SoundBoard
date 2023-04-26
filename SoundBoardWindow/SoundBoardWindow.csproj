@@ -142,5 +142,8 @@
   <ItemGroup>
     <Resource Include="Icons\user-home.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\loop.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

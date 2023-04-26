@@ -51,6 +51,10 @@ namespace SoundBoardWindow
             Lib.TagsList.Add(new Tag("Tag2"));
             Lib.TagsList.Add(new Tag("Tag3"));
             Lib.TagsList.Add(new Tag("Tag4", true));
+
+            //allows for capturing key modifiers with a specific key
+            EventManager.RegisterClassHandler(typeof(Window),
+                Keyboard.KeyDownEvent, new KeyEventHandler(KeyDown), true);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -137,47 +141,37 @@ namespace SoundBoardWindow
 
         
         //---------------------------------------MEDIA CONTROLS
-        private void CommandBindingPlay_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {e.CanExecute = true;}
-
-        //functionality of Play button
-        private void CommandBindingPlay_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void KeyDown(object sender, KeyEventArgs e)
         {
-            if(MasterStateMachine.PlayingSound)
-           Player.Play();
-        }
-
-        private void CommandBindingStop_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {e.CanExecute = true;}
-
-        //functionality of Stop button
-        private void CommandBindingStop_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            if(MasterStateMachine.PlayingSound == true)
+            if ((Keyboard.Modifiers & ModifierKeys.Alt) == ModifierKeys.Alt) // Is Alt key pressed
             {
-                mediaUI.Stop();
-                MasterStateMachine.PlayingSound = false;
+                //Keybinding for play
+                if (Keyboard.IsKeyDown(Key.Space))
+                {
+                    // do something here
+                    if (MasterStateMachine.PlayingSound)
+                        Player.Play();
+                }
+                //KeyBinding for stop
+                else if (Keyboard.IsKeyDown(Key.O))
+                {
+                    if (MasterStateMachine.PlayingSound == true)
+                    {
+                        mediaUI.Stop();
+                        MasterStateMachine.PlayingSound = false;
+                    }
+                }
             }
         }
 
-        private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        private void Button_Play_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void Element_MediaOpened(object sender, RoutedEventArgs e)
         {
 
-        }
-
-        private void CommandBindingAddSound_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-
-        }
-
-        private void CommandBindingAddSound_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            
         }
         //---------------------------------------
     }
