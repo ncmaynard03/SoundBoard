@@ -22,13 +22,9 @@ namespace SoundBoardWindow
             FileURI = new Uri(filePath);
             PlayBackTime = playbackTime;
             Tags = tags;
+            ListOfTags = tags.ListOfTags;
             Debug.WriteLine("New soundfile: " + this);
         }
-        private string name;
-        private string filePath;
-        private int playBackTime;
-        private TagList tags;
-
         public string Name { get; set; }
         public string FilePath { get; set; }
         public int PlayBackTime { get; set; }

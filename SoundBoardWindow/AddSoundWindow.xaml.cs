@@ -46,14 +46,20 @@ namespace SoundBoardWindow
 
             ofd = new OpenFileDialog();
             Tags = MasterStateMachine.Tags;
-
-
-
-            //for(int i = 0; i < lib.Tags.Count; i++)
-            //{
-            //    tags.Add(new Tag(lib.Tags[i]));
-            //}
             libr = MasterStateMachine.MasterLibrary;
+
+            Tags.IsEditMode = true;
+            TagButtonStack = TagBtnStack;
+            TagButtonStack.Children.Clear();
+            try
+            {
+            TagButtonStack.Children.Add(Tags.DrawPanel);
+
+            }
+            catch
+            {
+
+            }
         }
 
         public void SelectFile(object sender=null, RoutedEventArgs e=null)
@@ -65,10 +71,6 @@ namespace SoundBoardWindow
 
             FilePath = ofd.FileName;
             FileName = System.IO.Path.GetFileNameWithoutExtension(ofd.FileName);
-            Tags.IsEditMode = true;
-            TagButtonStack = TagBtnStack;
-            TagButtonStack.Children.Clear();
-            TagButtonStack.Children.Add(Tags.DrawPanel);
         }
 
         public string FileName{ get { return _fileName; } set
@@ -120,6 +122,7 @@ namespace SoundBoardWindow
             libr.Add(sf);
             this.Close();
             MainWindow.CurrentInstance.DisplaySounds.Children.Add(NewSoundButton(sf));
+            
         }
 
         private Button NewSoundButton(SoundFile sf)
