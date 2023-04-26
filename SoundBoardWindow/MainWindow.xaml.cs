@@ -1,22 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.IO;
-using Microsoft.Win32;
-using System.Windows.Input;
 using System.Diagnostics;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media;
 
-namespace SoundBoardWindow  
+namespace SoundBoardWindow
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -25,7 +13,7 @@ namespace SoundBoardWindow
     {
 
         private AddSoundWindow _asd;
-        private MediaPlayer _player;
+        public MediaPlayer Player { get; set; }
         public static MainWindow CurrentInstance { get; private set; }
 
         public StateMachine MasterStateMachine { get; set; }
@@ -39,13 +27,13 @@ namespace SoundBoardWindow
             
 
 
-            _player = new MediaPlayer();
+            Player = new MediaPlayer();
             Lib = new Library(MasterStateMachine);
             
 
 
             Debug.WriteLine("\n\nAbout to make first tag: ");
-            Lib.TagsList.Add(new Tag("Tag1", true));
+            Lib.TagsList.Add(new Tag("Explicit", true));
             Lib.TagsList.Add(new Tag("Tag2"));
             Lib.TagsList.Add(new Tag("Tag3"));
             Lib.TagsList.Add(new Tag("Tag4", true));
@@ -54,7 +42,10 @@ namespace SoundBoardWindow
         public void AddSound(object sender, RoutedEventArgs e)
         {
             _asd = new AddSoundWindow();
+            Debug.WriteLine("New Sound Window");
             _asd.Show();
+            Debug.WriteLine("Show");
+
             _asd.SelectFile();
             
         }
@@ -105,7 +96,7 @@ namespace SoundBoardWindow
         private void CommandBindingPlay_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             if(MasterStateMachine.PlayingSound)
-           _player.Play();
+           Player.Play();
         }
 
         private void CommandBindingStop_CanExecute(object sender, CanExecuteRoutedEventArgs e)

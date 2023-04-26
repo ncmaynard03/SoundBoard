@@ -63,6 +63,10 @@ namespace SoundBoardWindow
 
             FilePath = ofd.FileName;
             FileName = System.IO.Path.GetFileNameWithoutExtension(ofd.FileName);
+            Tags.IsEditMode = true;
+            TagButtonStack = TagBtnStack;
+            TagButtonStack.Children.Clear();
+            TagButtonStack.Children.Add(Tags.DrawPanel);
         }
 
         public string FileName{ get { return _fileName; } set
@@ -106,16 +110,34 @@ namespace SoundBoardWindow
                 if (str != "")
                     libr.TagsList.Add(new Tag(i));
             }
-            Tags.IsEditMode = true;
-            TagButtonStack = TagBtnStack;
-            TagButtonStack.Children.Clear();
-            TagButtonStack.Children.Add(Tags.DrawPanel);
         }
 
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
-            libr.add(new SoundFile(FileName, FilePath, libr.TagsList.CopyList()));
+            var sf = new SoundFile(FileName, FilePath, libr.TagsList.CopyList());
+            libr.add(sf);
             this.Close();
+            MainWindow.CurrentInstance.DisplaySounds.Children.Add(NewSoundButton(sf));
+        }
+
+        private Button NewSoundButton(SoundFile sf)
+        {
+            var btn = new Button();
+            btn.Content = sf.Name;
+            btn.Click += (sender, args) =>
+            {
+                var player = MainWindow.CurrentInstance.Player;
+                player.Open(sf.FileURI);
+                player.Play();
+            };
+            btn.Width = 60;
+            btn.Height = 30;
+            return btn;
+        }
+
+        private void Btn_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 
