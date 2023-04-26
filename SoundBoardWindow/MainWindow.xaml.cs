@@ -1,8 +1,20 @@
-﻿using System;
-using System.Diagnostics;
+﻿using Microsoft.Win32;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using System.Diagnostics;
+using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 namespace SoundBoardWindow
 {
@@ -15,20 +27,22 @@ namespace SoundBoardWindow
         private AddSoundWindow _asd;
         public MediaPlayer Player { get; set; }
         public static MainWindow CurrentInstance { get; private set; }
+        public Library Lib { get { return MasterStateMachine.MasterLibrary; } }
+
 
         public StateMachine MasterStateMachine { get; set; }
-        public MainWindow()
+        public MainWindow() 
         {
             MasterStateMachine = new StateMachine();
             CurrentInstance = this;
             InitializeComponent();
+            DataContext = this;
             Debug.WriteLine("\n\nWindow Initialized\n\n");
             //StateMachine initialization
             
 
 
             Player = new MediaPlayer();
-            Lib = new Library(MasterStateMachine);
             
 
 
@@ -39,8 +53,35 @@ namespace SoundBoardWindow
             Lib.TagsList.Add(new Tag("Tag4", true));
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
+        private string _fileName;
+        public string FileName{ get { return _fileName; } set
+            { 
+                if(_fileName != value)
+                {
+                    _fileName = value;
+                    OnPropertyChanged("FileName");
+                }
+            }
+        }
+
+        private string _filePath;
+
+        public string FilePath { get { return _filePath; }
+            set
+            {
+                if (_filePath != value)
+                {
+                    _filePath = value;
+                    OnPropertyChanged("FilePath");
+                }
+            }
+        }
         public void AddSound(object sender, RoutedEventArgs e)
         {
+
             _asd = new AddSoundWindow();
             Debug.WriteLine("New Sound Window");
             _asd.Show();
@@ -50,7 +91,15 @@ namespace SoundBoardWindow
             
         }
 
-
+        public virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z0-9,]+"); // regular expression to match anything that's not a letter, number, or comma
+            e.Handled = regex.IsMatch(e.Text); // set Handled to true if the input doesn't match the regular expression
+        }
         private void ChangeMediaVolume(object sender, RoutedPropertyChangedEventArgs<double> args)
         {
             mediaUI.Volume = (double)volumeSlider.Value;
@@ -86,7 +135,6 @@ namespace SoundBoardWindow
             mediaUI.SpeedRatio = (double)speedRatioSlider.Value;
         }
 
-        public Library Lib { get; }
         
         //---------------------------------------MEDIA CONTROLS
         private void CommandBindingPlay_CanExecute(object sender, CanExecuteRoutedEventArgs e)

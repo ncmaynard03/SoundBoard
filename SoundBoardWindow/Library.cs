@@ -32,10 +32,10 @@ namespace SoundBoardWindow
             {
                 return ListOfTags.Count;
             }
-                }
+        }
 
-        public TagList AllTags { get; set; }
-        public List<Tag> ListOfTags { get; set; }
+        public TagList AllTags { get { return MasterStateMachine.Tags; } }
+        public List<Tag> ListOfTags { get { return MasterStateMachine.ListOfTags; } }
         public bool IsEditMode { get; set; }
         public StackPanel DrawPanel { get; set; }
         public StateMachine MasterStateMachine { get; set; }
@@ -43,7 +43,6 @@ namespace SoundBoardWindow
             Debug.WriteLine("\n\n New Taglist\n\n");
             MasterStateMachine = sm;
             _usedTags = new List<Tag>();
-            ListOfTags = new List<Tag>();
             DrawPanel = new StackPanel();
             Debug.WriteLine("FInished tl init\n\n");
         }
@@ -86,15 +85,6 @@ namespace SoundBoardWindow
             return false;
         }
 
-        public bool Contains(SoundFile sf)
-        {
-            for (int i = 0; i < MasterStateMachine.ListOfSoundFiles.Count; i++)
-            {
-                if (MasterStateMachine.ListOfSoundFiles[i].Name == sf.Name)
-                    return true;
-            }
-            return false;
-        }
 
         
 
@@ -187,21 +177,16 @@ namespace SoundBoardWindow
 
     public class Library
     {
-        private List<SoundFile> ListOfSoundFiles { get; set; }
-        public TagList TagsList { get; set; }
+        public List<SoundFile> SoundFiles { get { return MasterStateMachine.ListOfSoundFiles; } }
+        public TagList TagsList { get { return MasterStateMachine.Tags; } }
         public StateMachine MasterStateMachine { get; set; }
-        public List<Tag> ListOfTags { get; set; }
+        public List<Tag> ListOfTags { get { return MasterStateMachine.ListOfTags; } }
 
         public Library(StateMachine sm)
         {
             Debug.WriteLine("\n\nNew Library\n\n");
             MasterStateMachine = sm;
-            SoundFiles = sm.ListOfSoundFiles;
 
-            ListOfTags = sm.ListOfTags;
-            TagsList = sm.Tags;
-
-            
 
         }
 
@@ -228,7 +213,16 @@ namespace SoundBoardWindow
             }
         }
 
-        public List<SoundFile> SoundFiles { get; }
-        public int FileCount { get; }
+        public bool Contains(SoundFile sf)
+        {
+            for (int i = 0; i < MasterStateMachine.ListOfSoundFiles.Count; i++)
+            {
+                if (MasterStateMachine.ListOfSoundFiles[i].Name == sf.Name)
+                    return true;
+            }
+            return false;
+        }
+        
+        public int FileCount { get { return MasterStateMachine.ListOfSoundFiles.Count; } }
     }
 }
