@@ -27,6 +27,7 @@ namespace SoundBoardWindow
     {
         private string _filePath;
         private string _fileName;
+        private int _fileDuration;
         private OpenFileDialog ofd;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -40,6 +41,7 @@ namespace SoundBoardWindow
             InitializeComponent();
             _filePath = _fileName = "";
             DataContext = this;
+            _fileDuration = 0;
             MasterStateMachine = MainWindow.CurrentInstance.MasterStateMachine;
 
             ofd = new OpenFileDialog();
@@ -113,20 +115,24 @@ namespace SoundBoardWindow
             TagButtonStack.Children.Add(Tags.DrawPanel);
         }
 
+        //Adds to 
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
-            libr.Add(new SoundFile(FileName, FilePath, libr.TagsList.CopyList()), 13); //Fix add actual time variable
-            foreach (var item in MasterStateMachine.MasterLibrary.SoundFiles)
-            {
-                Debug.WriteLine(item);
-            }
-            this.Close();
+            int time = 3;
+            libr.Add(new SoundFile(FileName, FilePath, libr.TagsList.CopyList(), time)); //Fix add actual time variable
+            
         }
 
+        //Clear implementation. Im guessing it removed included tags
         private void ClearBtn_Click(object sender, RoutedEventArgs e)
         {
-            Tags.IsEditMode = true;
-            foreach()
+            if(TagBtnStack.Children.Count > 0)
+            {
+                Tags.IsEditMode = true;
+
+            }
+            
+            
             
         }
     }

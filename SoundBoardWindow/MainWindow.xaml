@@ -6,6 +6,14 @@
         xmlns:local="clr-namespace:SoundBoardWindow"
         mc:Ignorable="d"
         Title="SoundBoard" Height="500" Width="300" MaxHeight="700" MaxWidth="500" MinWidth="150">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style x:Key="LabelSettings" TargetType="Label">
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="FontFamily" Value="Arial Black"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
     <TabControl VerticalAlignment="Top">
         <TabItem Name="Play" >
             <TabItem.Header>
@@ -89,9 +97,17 @@
             <TabItem.Header>
                 <Image Source="/Icons/Settings.ico" Stretch="Uniform" Width="32" Height="32"/>
                 
+                
             </TabItem.Header>
             <Grid>
-                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Opacity" BorderBrush="Blue"/>
             </Grid>
         </TabItem>
     </TabControl>
