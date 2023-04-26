@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 
 /// <summary>
@@ -27,12 +28,14 @@ namespace SoundBoardWindow {
     /// <summary>
     /// Holds all the global variables for the rest of the program to use.
     /// </summary>
-    public class StateMachine
+    public class StateMachine : INotifyPropertyChanged
     {
         //Have Library.cs talk to this list of SoundFiles
         public bool PlayingSound { get; set; } = false;
         public bool DrawOverApps { get; set; } = true;
         public ushort Opacity { get; set; } = 100;
+        public int SongIndex { get; set; } = 0;
+
         public DockPositions CurrDockPos { get; set; } = DockPositions.Left;
         //Havey.cs talk to this list of tags
         public List<Tag> ListOfTags { get; set; } = new List<Tag>();
@@ -46,6 +49,13 @@ namespace SoundBoardWindow {
             Tags = new TagList(this);
             ListOfTags = Tags.ListOfTags;
             MasterLibrary = new Library(this);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

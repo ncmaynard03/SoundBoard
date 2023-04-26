@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Diagnostics;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
+using System.Net.NetworkInformation;
 
 namespace SoundBoardWindow
 {
@@ -118,32 +119,53 @@ namespace SoundBoardWindow
 
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
-            var sf = new SoundFile(FileName, FilePath, libr.TagsList.CopyList(),0);
+
+            var btn = new Button();
+            btn.Uid = FileName + "UID";
+            btn.Content = FileName;
+            btn.Width = 60;
+            btn.Height = 30;
+            btn.Margin = new Thickness(4,2,4,2);
+            //creation of sound file
+            var sf = new SoundFile(FileName, FilePath, libr.TagsList.CopyList(), 0, btn);
+
+            btn.Click += (sender1, args) =>
+            {
+                foreach (Button a in MainWindow.CurrentInstance.DisplaySounds.Children)
+                {
+                    MasterStateMachine.SongIndex = 0;
+                    //if button UId matches sf
+                    if (a == sender1)
+                    {
+                        sf.CurrentTarget = true;
+                        btn.Background = Brushes.Red;
+                        
+                    }
+                    else 
+                    {
+                        if(a == MasterStateMachine.ListOfSoundFiles[MasterStateMachine.SongIndex].Button)
+                        {
+
+                        }
+                        
+                    }
+                    MasterStateMachine.SongIndex++;
+                }
+                
+                btn.Background = Brushes.Azure;
+                var player = MainWindow.CurrentInstance.Player;
+                player.Open(new Uri(FilePath));
+                player.Play();
+                btn.Background = Brushes.LightGray;
+            };
+
+            sf = new SoundFile(FileName, FilePath, libr.TagsList.CopyList(), 0, btn);
             libr.Add(sf);
             this.Close();
-            MainWindow.CurrentInstance.DisplaySounds.Children.Add(NewSoundButton(sf));
+            MainWindow.CurrentInstance.DisplaySounds.Children.Add(sf.Button);
             
         }
 
-        private Button NewSoundButton(SoundFile sf)
-        {
-            var btn = new Button();
-            btn.Content = sf.Name;
-            btn.Click += (sender, args) =>
-            {
-                var player = MainWindow.CurrentInstance.Player;
-                player.Open(sf.FileURI);
-                player.Play();
-            };
-            btn.Width = 60;
-            btn.Height = 30;
-            return btn;
-        }
-
-        private void Btn_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         private void ClearBtn_Click(object sender, RoutedEventArgs e)
         {

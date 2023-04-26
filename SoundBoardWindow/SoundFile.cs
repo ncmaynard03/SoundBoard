@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Media;
 using System.Windows.Media;
 using System.Diagnostics;
+using System.Windows.Controls;
 
 namespace SoundBoardWindow
 {
@@ -15,7 +16,7 @@ namespace SoundBoardWindow
         /// <param name="name">name of soundFile</param>
         /// <param name="filePath">path to reach file stored locally</param>
         /// <param name="tags"></param>
-        public SoundFile(string name, string filePath, TagList tags, int playbackTime)
+        public SoundFile(string name, string filePath, TagList tags, int playbackTime, Button button)
         {
             Name = name;
             FilePath = filePath;
@@ -23,6 +24,7 @@ namespace SoundBoardWindow
             PlayBackTime = playbackTime;
             Tags = tags;
             ListOfTags = tags.ListOfTags;
+            Button = button;
             Debug.WriteLine("New soundfile: " + this);
         }
         public string Name { get; set; }
@@ -31,9 +33,15 @@ namespace SoundBoardWindow
         public TagList Tags { get; set; }
         public List<Tag> ListOfTags { get; set; }
         public Uri FileURI { get; }
+        public Button Button { get; set; }
+        public bool CurrentTarget { get; set; }
+        
+        
         public override string ToString()
         {
             return Name + " (" + FilePath + ")" + PlayBackTime;
         }
+
+        
     }
 }

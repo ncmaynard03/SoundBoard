@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SoundBoardWindow"
         mc:Ignorable="d"
-        Title="SoundBoard" Height="500" Width="300" MaxHeight="700" MaxWidth="500" MinWidth="150">
+        Title="SoundBoard" Height="500" Width="400" MaxHeight="700" MaxWidth="500" MinWidth="150" WindowStyle="None">
     <Window.Resources>
         <ResourceDictionary>
-            <Style x:Key="LabelSettings" TargetType="Label">
+            <Style x:Key="LabelSettings" x:Name="Labels" TargetType="Label">
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="FontFamily" Value="Arial Black"/>
             </Style>
@@ -16,16 +16,16 @@
     </Window.Resources>
 
     <TabControl VerticalAlignment="Top" Height="459" Margin="0,10,0,0">
-        <TabItem Name="Play" >
+        <TabItem Name="Play">
             <TabItem.Header>
                 <Image Source="/Icons/Play.ico" Stretch="Uniform" Width="32"  Height="32"></Image>
             </TabItem.Header>
-
+            
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="25"/>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="Auto"/>
 
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -57,7 +57,7 @@
                 </StackPanel>
 
                 <!--Sliders -->
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="2" Margin="0,0,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="2" Margin="0,0,0,0">
 
                     <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                         <TextBlock Foreground="Black" VerticalAlignment="Center" Margin="5"  >Vol</TextBlock>
@@ -66,7 +66,7 @@
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                        <TextBlock Foreground="Black" Margin="5"  VerticalAlignment="Center" Text="{Binding }"></TextBlock>
+                        <TextBlock Foreground="Black" Margin="5"  VerticalAlignment="Center" Text="{Binding StateMachine }"></TextBlock>
                         <Slider Name="timelineSlider" Margin="5" Width="140"/>
                         <!-- Volume slider. This slider allows you to change the speed of the media playback. -->
                     </StackPanel>
@@ -92,12 +92,11 @@
         <TabItem>
             <TabItem.Header>
                 <Image Source="/Icons/Settings.ico" Stretch="Uniform" Width="32" Height="32"/>
-
-
             </TabItem.Header>
-            <Grid>
-
-            </Grid>
+            <StackPanel>
+                <Label>Opacity</Label>
+                <TextBox></TextBox>
+            </StackPanel>
         </TabItem>
     </TabControl>
 </Window>

@@ -37,11 +37,12 @@ namespace SoundBoardWindow
             CurrentInstance = this;
             InitializeComponent();
             DataContext = this;
+            
 
 
             Debug.WriteLine("\n\nWindow Initialized\n\n");
             //StateMachine initialization
-            
+            DataContext = MasterStateMachine.ListOfSoundFiles;
 
 
             Player = new MediaPlayer();
@@ -74,13 +75,14 @@ namespace SoundBoardWindow
         //---------------------------------------MEDIA CONTROLS
         private void KeyDown(object sender, KeyEventArgs e)
         {
-            if ((Keyboard.Modifiers & ModifierKeys.Alt) == ModifierKeys.Alt) // Is Alt key pressed
+            if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control) // Is Alt key pressed
             {
                 //Keybinding for play
-                if (Keyboard.IsKeyDown(Key.Space))
+                if (Keyboard.IsKeyDown(Key.P))
                 {
                     // do something here
-                    if (MasterStateMachine.PlayingSound)
+                    if (!MasterStateMachine.PlayingSound)
+                        
                         Player.Play();
                 }
                 //KeyBinding for stop
@@ -92,40 +94,13 @@ namespace SoundBoardWindow
                         MasterStateMachine.PlayingSound = false;
                     }
                 }
+                else if (Keyboard.IsKeyDown(Key.L)) 
+                {
+
+                }
             }
         }
 
         //---------------------------------------
     }
-    /*
-    public class PlayKey : ICommand
-    {
-        public event EventHandler CanExecuteChanged;
-
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
-
-        public void Execute(object parameter)
-        {
-            MessageBox.Show("Ctrl + ");
-        }
-    }
-
-    // Create a class that implements ICommand and accepts a delegate.
-    public class PlayCommandContext
-    {
-        public ICommand PlayCommand
-        {
-            get
-            {
-                return new PlayKey();
-            }
-        }
-    }
-    */
-
-
-
 }
